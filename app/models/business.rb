@@ -10,6 +10,7 @@ class Business < ApplicationRecord
   has_many :addresses, as: :addressable
   has_many :business_activities
   has_many :line_of_businesses, through: :business_activities
+  has_many :mayors_permit_fees, through: :line_of_businesses
   has_many :gross_sales
 
   accepts_nested_attributes_for :addresses, :business_activities
