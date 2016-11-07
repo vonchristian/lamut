@@ -7,4 +7,14 @@
   <% @business.line_of_businesses.each do |line_of_business| %>
     <p class="text-muted"><%=line_of_business.name %></p>
   <% end %>
+  <hr>
+  <p>Gross Sales
+    <span class="pull-right"><%=link_to "Add New", new_business_gross_sale_path(@business), class: "btn btn-primary btn-sm" %>
+    </span>
+   </p>
+   <% @business.gross_sales.each do |gross_sale| %>
+     <p class="text-muted"><%=number_to_currency gross_sale.amount %></p>
+     <i class="icon-calendar"></i><%=gross_sale.calendar_year %>
+   <% end %>
+  <hr>
 </div>

@@ -9,6 +9,7 @@ class Business < ApplicationRecord
   belongs_to :taxpayer
   has_many :addresses, as: :addressable
   has_many :line_of_businesses
+  has_many :gross_sales
 
   accepts_nested_attributes_for :addresses, :line_of_businesses
   delegate :name, to: :taxpayer, prefix: true

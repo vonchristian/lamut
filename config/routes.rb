@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :businesses, only: [:index, :show] do
     resources :line_of_businesses, only: [:new, :create], module: :businesses
     resource :retirement, only: [:new, :create], module: :businesses
+    resources :gross_sales, only: [:new, :create], module: :businesses
+
   end
   resources :settings, only: [:index]
   namespace :settings do

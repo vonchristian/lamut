@@ -8,6 +8,7 @@
       </div>
       <div class="col-md-9">
         <h4><b><%=@business.name %></b></h4>
+        <%=image_tag(@business.taxpayer.photo.url(:small), width: 25, height: 25, class: 'img-circle') %> <%= @business.taxpayer_name %>
         <small><i class="icon-location-pin"></i> <%=@business.current_address %></small>
       </div>
     </div>
