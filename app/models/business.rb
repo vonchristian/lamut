@@ -7,8 +7,9 @@ class Business < ApplicationRecord
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
   belongs_to :taxpayer
   has_many :addresses, as: :addressable
+  has_many :line_of_businesses
 
-  accepts_nested_attributes_for :addresses
+  accepts_nested_attributes_for :addresses, :line_of_businesses
   delegate :name, to: :taxpayer, prefix: true
   def current_address
     addresses.current.last.try(:address_details)

@@ -43,6 +43,12 @@
   </div>
 </div>
 <% end %>
+<br>
+<h4>Line of Business </h4>
+
+<%=f.simple_fields_for :line_of_businesses do |l| %>
+  <%=l.input :name %>
+<% end %>
 
     <div class="modal-footer">
       <%= f.submit "Save Business", class: "btn btn-primary" %>

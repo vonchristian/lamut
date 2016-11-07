@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     resources :businesses, only: [:new, :create], module: :taxpayers
   end
   resources :fees
-  resources :businesses, only: [:index, :show]
+  resources :businesses, only: [:index, :show] do
+    resources :line_of_businesses, only: [:new, :create], module: :businesses
+  end
   resources :settings, only: [:index]
   namespace :settings do
     resources :barangays, only: [:new, :create]

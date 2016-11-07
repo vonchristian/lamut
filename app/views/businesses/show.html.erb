@@ -1,20 +1,31 @@
 <div class="col-md-12">
 <div class="box box-solid">
   <div class="box-header">
-    <%=@business.name %>
+    <div class="row">
+      <div class="col-md-1">
+        <p></p>
+        <center><%=image_tag(@business.logo.url(:small)) %></center>
+      </div>
+      <div class="col-md-9">
+        <h4><b><%=@business.name %></b></h4>
+        <small><i class="icon-location-pin"></i> <%=@business.current_address %></small>
+      </div>
+    </div>
   </div>
   <div class="box-body">
   <div class="nav-tabs-custom">
     <ul class="nav nav-tabs">
 
-      <li class="active"><a href="#businesses" data-toggle="tab">Info</a></li>
-      <li><a href="#timeline" data-toggle="tab">Taxes and Fees</a></li>
+      <li class="active"><a href="#info" data-toggle="tab">Info</a></li>
+      <li><a href="#taxes-and-fees" data-toggle="tab">Taxes and Fees</a></li>
       <li><a href="#settings" data-toggle="tab">Requirements</a></li>
       <li><a href="#settings" data-toggle="tab"><i class="icon-settings"></i> Settings</a></li>
 
     </ul>
     <div class="tab-content">
-     <%#=render 'taxpayers/partials/businesses' %>
+     <%=render 'businesses/partials/info' %>
+     <%=render 'businesses/partials/taxes_and_fees' %>
+
     </div>
     <!-- /.tab-content -->
   </div>

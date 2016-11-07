@@ -22,7 +22,9 @@
     <% @businesses.each do |business| %>
       <tr>
         <td><%= image_tag(business.logo.url(:small), width: 35, height: 35) %></td>
-        <td><%= link_to business.name.try(:upcase), business %></td>
+        <td><%= link_to business.name.try(:upcase), business %>
+            <small class="help-block"><i class="icon-list"></i> <%=business.line_of_businesses.try(:details) %></small>
+        </td>
         <td><%= business.taxpayer_name %></td>
         <td><%= business.current_address %></td>
 
