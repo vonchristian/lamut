@@ -1,5 +1,5 @@
 <%=simple_form_for [@business, @business_activity], url: :business_business_activities do |f| %>
   <%=f.error_notification %>
-  <%=f.input :line_of_business_id, collection: LineOfBusiness.all.map{|a| [a.name_and_fee, a.id]}, as: :check_boxes %>
+  <%=f.input :line_of_business_id, collection: LineOfBusiness.all.map{|a| [a.name_and_fee, a.id]}, as: :radio_buttons %>
   <%=f.submit "Add Line of Business", class: "btn btn-primary" %>
 <% end %>

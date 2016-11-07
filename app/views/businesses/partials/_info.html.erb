@@ -4,8 +4,8 @@
   </span>
 </p>
   <hr>
-  <% @business.business_activities.each do |business_activity| %>
-    <p class="text-muted"><%=business_activity.line_of_business %></p>
+  <% @business.line_of_businesses.each do |line_of_business| %>
+    <p class="text-muted"><%=line_of_business.name %></p>
   <% end %>
   <hr>
   <p>Gross Sales

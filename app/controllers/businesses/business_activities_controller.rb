@@ -16,7 +16,7 @@ module Businesses
 
     private
     def business_activity_params
-      params.require(:business_activity).permit(:line_of_business_id =>[])
+      params.require(:business_activity).permit(:line_of_business_id)
     end
   end
 end
