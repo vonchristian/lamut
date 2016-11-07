@@ -1,0 +1,82 @@
+<div class="row">
+       <div class="col-md-3">
+
+         <!-- Profile Image -->
+         <div class="box box-primary">
+           <div class="box-body box-profile">
+             <%=image_tag(@taxpayer.photo.url(:thumb), class: "profile-user-img img-responsive img-circle") %>
+
+             <h3 class="profile-username text-center"><%= @taxpayer.first_name_and_last_name %></h3>
+
+             <p class="text-muted text-center"><%=@taxpayer.current_address %></p>
+
+             <ul class="list-group list-group-unbordered">
+
+
+             </ul>
+             <%=link_to "Update Info", edit_taxpayer_path(@taxpayer), class: "btn btn-primary btn-block" %>
+
+           </div>
+           <!-- /.box-body -->
+         </div>
+         <!-- /.box -->
+
+         <!-- About Me Box -->
+         <div class="box box-solid">
+           <div class="box-header with-border">
+             <h3 class="box-title">About <%=@taxpayer.first_name %></h3>
+           </div>
+           <!-- /.box-header -->
+           <div class="box-body">
+             <strong><i class="fa fa-book margin-r-5"></i> TIN </strong>
+
+             <p class="text-muted">
+              <%=@taxpayer.tin_number %>
+             </p>
+
+             <hr>
+
+             <strong><i class="fa fa-map-marker margin-r-5"></i> Address</strong>
+
+             <p class="text-muted"><%=@taxpayer.current_address %></p>
+
+             <hr>
+             <strong><i class="fa fa-phone margin-r-5"></i> Mobile Number</strong>
+
+             <p class="text-muted"><%=@taxpayer.mobile_number %></p>
+
+             <hr>
+             <strong><i class="fa fa-male"></i> Gender</strong>
+
+             <p class="text-muted"><%=@taxpayer.sex %></p>
+
+             <hr>
+             <strong><i class="fa fa-male"></i> Civil Status</strong>
+
+             <p class="text-muted"><%=@taxpayer.civil_status %></p>
+
+             <hr>
+
+
+           </div>
+           <!-- /.box-body -->
+         </div>
+         <!-- /.box -->
+       </div>
+       <!-- /.col -->
+       <div class="col-md-9">
+         <div class="nav-tabs-custom">
+           <ul class="nav nav-tabs">
+             <li class="active"><a href="#businesses" data-toggle="tab">Businesses</a></li>
+             <li><a href="#timeline" data-toggle="tab">Timeline</a></li>
+             <li><a href="#settings" data-toggle="tab">Settings</a></li>
+           </ul>
+           <div class="tab-content">
+            <%=render 'taxpayers/partials/businesses' %>
+           </div>
+           <!-- /.tab-content -->
+         </div>
+         <!-- /.nav-tabs-custom -->
+       </div>
+       <!-- /.col -->
+     </div>

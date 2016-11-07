@@ -1,0 +1,87 @@
+<div class="row">
+  <div class="col-md-9">
+  <div class="box box-solid">
+
+    <div class="box-header">
+      <%= link_to 'New Taxpayer', new_taxpayer_path, class: "btn btn-primary" %>
+    </div>
+    <div class="box-body">
+<div class="table table-responsive">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Full name</th>
+
+      <th>Address </th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @taxpayers.each do |taxpayer| %>
+      <tr>
+        <td><%=image_tag(taxpayer.photo.url(:small), class: "img-square") %></td>
+        <td><%= link_to taxpayer.full_name.try(:upcase), taxpayer %>
+            <small class="help-block">
+              <i class="icon-phone"></i> &nbsp; <%=taxpayer.mobile_number %> &nbsp;
+              <i class="icon-speech"></i> &nbsp; <%=taxpayer.email %>
+            </small>
+        </td>
+
+
+        <td><%= taxpayer.current_address %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-3">
+  <div class="box box-default">
+    <div class="box-header">
+      <i class="icon-graph"></i> Statistics
+    </div>
+    <div class="box-body">
+      <div class="box-header">
+                <div class="row">
+                  <div class="col-sm-12 col-xs-12">
+                    <div class="description-block">
+                      <h5 class="description-header"><%= Taxpayer.count %></h5>
+                      <span class="description-text">TOTAL TAXPAYERS</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <div class="col-sm-6 col-xs-6">
+                    <div class="description-block border-right">
+
+
+                      <h5 class="description-header"><%=@taxpayers.male.count %></h5>
+                      <span class="description-text">MALE</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-sm-6 col-xs-6">
+                    <div class="description-block border-right">
+
+                      <h5 class="description-header"><%=@taxpayers.female.count %></h5>
+                      <span class="description-text">FEMALE</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+
+                  <!-- /.col -->
+
+                </div>
+                <!-- /.row -->
+              </div>
+    </div>
+</div>
+</div>

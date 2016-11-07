@@ -1,0 +1,17 @@
+<div class="col-md-4 col-md-offset-4">
+  <div class="box box-solid">
+    <div class="box-header with-border">
+      Barangay Details
+    </div>
+    <div class="box-body">
+      <%=simple_form_for @barangay, url: :settings_barangays do |f| %>
+        <%=f.error_notification %>
+        <%=f.input :name %>
+        <%=f.input :municipality_id, input_html: { value: Municipality.first.try(:id) } %>
+        <div class="modal-footer">
+          <%=f.submit "Save Barangay", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  <div>
+</div>

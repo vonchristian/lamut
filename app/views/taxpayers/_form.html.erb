@@ -1,0 +1,80 @@
+<div class="row">
+<div class="col-md-12">
+  <div class="box box-solid">
+    <div class="box-header">
+    </div>
+    <div class="box-body">
+  <div class="col-md-6">
+  </div>
+  <div class="col-md-5">
+  <%= simple_form_for(@taxpayer) do |f| %>
+    <%= f.error_notification %>
+    <center>
+            <%= image_tag @taxpayer.photo.url(:thumb), class: "img-circle" %>
+            <%= f.input :photo, as: :file %>
+          </center>
+
+    <div class="form-inputs">
+      <div class="row">
+        <div class="col-md-4">
+      <%= f.input :first_name %>
+    </div>
+    <div class="col-md-4">
+      <%= f.input :middle_name %>
+    </div>
+    <div class="col-md-4">
+      <%= f.input :last_name %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :mobile_number %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :email %>
+    </div>
+  </div>
+      <%= f.input :date_of_birth%>
+      <%= f.input :sex, collection: Taxpayer.sexes.keys.to_a.map{|a| [a.titleize, a]}, as: :radio_buttons %>
+      <%= f.input :civil_status, collection: Taxpayer.civil_statuses.keys.to_a.map{|a| [a.titleize, a]}, as: :radio_buttons %>
+
+
+
+    </div>
+    <% if @taxpayer.new_record? %>
+    <br>
+    <h4>Address</h4>
+    <%=f.simple_fields_for :addresses do |a| %>
+    <div class="row">
+      <div class="col-md-6">
+    <%= a.input :house_number %>
+  </div>
+  <div class="col-md-6">
+    <%= a.input :unit_number %>
+  </div>
+  <div class="col-md-12">
+    <%= a.input :building_name %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <%=a.input :street, label: "Street/Sitio"%>
+  </div>
+  <div class="col-md-6">
+    <%= a.input :barangay_id, collection: Barangay.all.map{|a| [a.name, a.id] } %>
+  </div>
+    <div class="col-md-6">
+    <%= a.input :municipality_id, collection: Municipality.all.map{|a| [a.name, a.id] }, default: Municipality.first %>
+  </div>
+    <div class="col-md-6">
+    <%= a.input :province_id, collection: Province.all.map{|a| [a.name, a.id] }, default: Province.first%>
+    <%= a.input :current, as: :boolean%>
+  </div>
+</div>
+
+    <% end %>
+    <% end %>
+    <div class="modal-footer">
+      <%= f.submit "Save Taxpayer", class: "btn btn-primary" %>
+    </div>
+  <% end %>

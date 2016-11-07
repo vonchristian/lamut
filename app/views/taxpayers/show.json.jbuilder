@@ -1,0 +1,1 @@
+json.partial! "taxpayers/taxpayer", taxpayer: @taxpayer
