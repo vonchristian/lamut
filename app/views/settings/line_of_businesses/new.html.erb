@@ -1,0 +1,8 @@
+<%=simple_form_for @line_of_business, url: :settings_line_of_businesses do |f| %>
+  <%=f.error_notification %>
+  <%=f.input :name %>
+  <%=f.simple_fields_for :mayors_permit_fee do |m| %>
+    <%=m.input :amount %>
+  <% end %>
+  <%=f.submit %>
+<% end %>

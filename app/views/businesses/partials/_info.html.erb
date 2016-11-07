@@ -1,11 +1,11 @@
 <div class="tab-pane active" id="info">
-  <p>Lines of Business
-  <span class="pull-right"><%=link_to "Add New", new_business_line_of_business_path(@business), class: "btn btn-primary btn-sm" %>
+  <p>Business Activities
+  <span class="pull-right"><%=link_to "Add New", new_business_business_activity_path(@business), class: "btn btn-primary btn-sm" %>
   </span>
 </p>
   <hr>
-  <% @business.line_of_businesses.each do |line_of_business| %>
-    <p class="text-muted"><%=line_of_business.name %></p>
+  <% @business.business_activities.each do |business_activity| %>
+    <p class="text-muted"><%=business_activity.line_of_business %></p>
   <% end %>
   <hr>
   <p>Gross Sales

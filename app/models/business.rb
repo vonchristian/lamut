@@ -8,10 +8,11 @@ class Business < ApplicationRecord
   has_one :retirement
   belongs_to :taxpayer
   has_many :addresses, as: :addressable
-  has_many :line_of_businesses
+  has_many :business_activities
+  has_many :line_of_businesses, through: :business_activities
   has_many :gross_sales
 
-  accepts_nested_attributes_for :addresses, :line_of_businesses
+  accepts_nested_attributes_for :addresses, :business_activities
   delegate :name, to: :taxpayer, prefix: true
   delegate :retired?, to: :retirement
   def current_address

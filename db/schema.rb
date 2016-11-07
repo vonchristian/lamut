@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161107134803) do
+ActiveRecord::Schema.define(version: 20161107141413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 20161107134803) do
     t.index ["municipality_id"], name: "index_barangays_on_municipality_id", using: :btree
   end
 
+  create_table "business_activities", force: :cascade do |t|
+    t.integer  "line_of_business_id"
+    t.integer  "business_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.index ["business_id"], name: "index_business_activities_on_business_id", using: :btree
+    t.index ["line_of_business_id"], name: "index_business_activities_on_line_of_business_id", using: :btree
+  end
+
   create_table "businesses", force: :cascade do |t|
     t.string   "name"
     t.boolean  "has_tax_incentive"
@@ -61,8 +70,12 @@ ActiveRecord::Schema.define(version: 20161107134803) do
     t.string   "type"
     t.string   "name"
     t.decimal  "amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "feeable_id"
+    t.string   "feeable_type"
+    t.index ["feeable_id"], name: "index_fees_on_feeable_id", using: :btree
+    t.index ["feeable_type"], name: "index_fees_on_feeable_type", using: :btree
   end
 
   create_table "gross_sales", force: :cascade do |t|
@@ -76,10 +89,8 @@ ActiveRecord::Schema.define(version: 20161107134803) do
 
   create_table "line_of_businesses", force: :cascade do |t|
     t.string   "name"
-    t.integer  "business_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["business_id"], name: "index_line_of_businesses_on_business_id", using: :btree
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "municipalities", force: :cascade do |t|
@@ -154,9 +165,10 @@ ActiveRecord::Schema.define(version: 20161107134803) do
   end
 
   add_foreign_key "barangays", "municipalities"
+  add_foreign_key "business_activities", "businesses"
+  add_foreign_key "business_activities", "line_of_businesses"
   add_foreign_key "businesses", "taxpayers"
   add_foreign_key "gross_sales", "businesses"
-  add_foreign_key "line_of_businesses", "businesses"
   add_foreign_key "municipalities", "provinces"
   add_foreign_key "retirements", "businesses"
   add_foreign_key "tins", "taxpayers"

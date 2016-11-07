@@ -16,3 +16,23 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="box box-solid">
+      <div class="box-header with-border">
+        <i class="icon-location-pin"></i> Lines of Business
+        <span class="pull-right">
+          <%=link_to new_settings_line_of_business_path do %>
+            <btn class="btn btn-default btn-icon"><i class="fa fa-plus-circle"></i> </btn>
+          <% end %>
+      </div>
+      <div class="box-body">
+        <% LineOfBusiness.all.each do |line_of_business| %>
+          <p><%=line_of_business.name %></p>
+          <p><%=number_to_currency line_of_business.mayors_permit_fee_amount %></p>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

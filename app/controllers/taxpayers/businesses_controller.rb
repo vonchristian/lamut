@@ -4,7 +4,7 @@ module Taxpayers
       @taxpayer = Taxpayer.find(params[:taxpayer_id])
       @business = @taxpayer.businesses.build
       @business.addresses.build
-      @business.line_of_businesses.build
+      @business.business_activities.build
     end
     def create
       @taxpayer = Taxpayer.find(params[:taxpayer_id])
@@ -17,7 +17,7 @@ module Taxpayers
     end
     def business_params
       params.require(:business).permit(:name, :logo,
-      line_of_businesses_attributes: [:name],
+      business_activities_attributes: [:line_of_business_id],
       addresses_attributes:[:street, :house_number, :building_name, :unit_number, :barangay, :municipality, :province, :current, :id])
     end
   end

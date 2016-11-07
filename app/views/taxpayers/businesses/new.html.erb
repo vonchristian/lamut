@@ -46,8 +46,8 @@
 <br>
 <h4>Line of Business </h4>
 
-<%=f.simple_fields_for :line_of_businesses do |l| %>
-  <%=l.input :name %>
+<%=f.simple_fields_for :business_activities do |l| %>
+  <%=l.input :line_of_business_id, collection: LineOfBusiness.all.map{|a| [a.name, a.id]} %>
 <% end %>
 
     <div class="modal-footer">
