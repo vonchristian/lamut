@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161107103243) do
+ActiveRecord::Schema.define(version: 20161107132426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,15 @@ ActiveRecord::Schema.define(version: 20161107103243) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "retirements", force: :cascade do |t|
+    t.integer  "business_id"
+    t.text     "remarks"
+    t.datetime "retirement_date"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["business_id"], name: "index_retirements_on_business_id", using: :btree
+  end
+
   create_table "taxpayers", force: :cascade do |t|
     t.string   "first_name"
     t.string   "middle_name"
@@ -139,5 +148,6 @@ ActiveRecord::Schema.define(version: 20161107103243) do
   add_foreign_key "businesses", "taxpayers"
   add_foreign_key "line_of_businesses", "businesses"
   add_foreign_key "municipalities", "provinces"
+  add_foreign_key "retirements", "businesses"
   add_foreign_key "tins", "taxpayers"
 end

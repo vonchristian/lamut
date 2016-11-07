@@ -5,12 +5,14 @@ class Business < ApplicationRecord
                                       default_url: ":style/no_logo.png"
 
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
+  has_one :retirement
   belongs_to :taxpayer
   has_many :addresses, as: :addressable
   has_many :line_of_businesses
 
   accepts_nested_attributes_for :addresses, :line_of_businesses
   delegate :name, to: :taxpayer, prefix: true
+  delegate :retired?, to: :retirement
   def current_address
     addresses.current.last.try(:address_details)
   end

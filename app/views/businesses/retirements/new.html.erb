@@ -1,0 +1,17 @@
+<div class="col-md-4 col-md-offset-4">
+  <div class="box box-danger">
+    <div class="box-header with-border">
+      Retirement Details
+    </div>
+    <div class="box-body">
+      <%=simple_form_for [@business, @retirement], url: :business_retirement do |f| %>
+        <%=f.error_notification %>
+        <%=f.input :remarks, as: :text %>
+        <%=f.input :retirement_date, as: :string, input_html: {class: "datepicker"} %>
+        <div class="modal-footer">
+          <%=f.submit "Retire this Business", class: 'btn btn-danger' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
