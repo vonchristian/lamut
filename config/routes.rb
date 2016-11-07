@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :taxpayers do
     resources :businesses, only: [:new, :create], module: :taxpayers
+    resource :tin, only: [:new, :create], module: :taxpayers
   end
   resources :fees
   resources :businesses, only: [:index, :show] do

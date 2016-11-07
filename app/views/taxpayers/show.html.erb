@@ -28,10 +28,13 @@
            </div>
            <!-- /.box-header -->
            <div class="box-body">
-             <strong><i class="fa fa-book margin-r-5"></i> TIN </strong>
+             <strong><i class="fa fa-book margin-r-5"></i> TIN
+                 <%= link_to "Add TIN", new_taxpayer_tin_path(@taxpayer), class: "btn btn-default btn-xs pull-right" %>
+             </strong>
 
              <p class="text-muted">
               <%=@taxpayer.tin_number %>
+
              </p>
 
              <hr>

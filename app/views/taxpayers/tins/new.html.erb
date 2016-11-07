@@ -1,0 +1,5 @@
+<%=simple_form_for [@taxpayer, @tin], url: :taxpayer_tin do |f| %>
+  <%=f.error_notification %>
+  <%=f.input :number %>
+  <%=f.submit "Save TIN", class: "btn btn-primary" %>
+<% end %>
