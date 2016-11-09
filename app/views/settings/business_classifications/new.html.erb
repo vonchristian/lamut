@@ -1,0 +1,5 @@
+<%=simple_form_for @business_classification, url: :settings_business_classifications do |f| %>
+  <%=f.error_notification %>
+  <%=f.input :name %>
+  <%=f.submit "Create Business Classification", class: "btn btn-primary" %>
+<% end %>

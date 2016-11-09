@@ -1,6 +1,9 @@
 class LineOfBusiness < ApplicationRecord
-  belongs_to :business
+
   has_one :mayors_permit_fee, as: :feeable, class_name: "Fees::MayorsPermitFee"
+
+  validates :name, presence: true, uniqueness: true
+
 
   accepts_nested_attributes_for :mayors_permit_fee
 

@@ -27,10 +27,40 @@
           <% end %>
       </div>
       <div class="box-body">
-        <% LineOfBusiness.all.each do |line_of_business| %>
-          <p><%=line_of_business.name %></p>
-          <p><%=number_to_currency line_of_business.mayors_permit_fee_amount %></p>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Business Activity</th>
+              <th> Mayors Permit Fee</th>
+            </tr>
+          </thead>
+          <tbody>
 
+        <% LineOfBusiness.all.each do |line_of_business| %>
+        <tr>
+          <td><%=line_of_business.name %></td>
+          <td><%=number_to_currency line_of_business.mayors_permit_fee_amount %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="box box-solid">
+      <div class="box-header with-border">
+        <i class="icon-location-pin"></i> Business Classifications
+        <span class="pull-right">
+          <%=link_to new_settings_business_classification_path do %>
+            <btn class="btn btn-default btn-icon"><i class="fa fa-plus-circle"></i> </btn>
+          <% end %>
+      </div>
+      <div class="box-body">
+        <% BusinessClassification.all.each do |business_classification| %>
+          <p><%=link_to business_classification.name, settings_business_classification_path(business_classification) %></p>
         <% end %>
       </div>
     </div>

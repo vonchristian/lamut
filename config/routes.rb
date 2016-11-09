@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   namespace :settings do
     resources :barangays, only: [:new, :create]
     resources :line_of_businesses, only: [:new, :create]
+    resources :business_classifications, only: [:new, :create, :show]
+
 
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

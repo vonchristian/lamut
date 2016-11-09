@@ -50,6 +50,8 @@
   <%=l.input :line_of_business_id, collection: LineOfBusiness.all.map{|a| [a.name, a.id]} %>
 <% end %>
 
+<%=f.input :business_classification_id, collection: BusinessClassification.all.map{|a| [a.name, a.id]}, as: :radio_buttons %>
+
     <div class="modal-footer">
       <%= f.submit "Save Business", class: "btn btn-primary" %>
     </div>
