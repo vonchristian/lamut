@@ -1,5 +1,10 @@
 <div class="tab-pane" id="taxes-and-fees">
   <p> Taxes </p>
+    Business Tax <% @business.gross_sales.with_unpaid_tax.each do |gross_sale| %>
+    <%=gross_sale.amount %>
+    <%=gross_sale.calendar_year.year %>
+    <%= gross_sale.tax %>
+    <% end %>
   <hr>
   <p> Fees </p>
   Mayors Permit Fee <%=number_to_currency @business.mayors_permit_fees.total %> <br>

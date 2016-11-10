@@ -22,7 +22,5 @@ class Business < ApplicationRecord
   def current_address
     addresses.current.last.try(:address_details)
   end
-  def retailer?
-  end
 
 end
