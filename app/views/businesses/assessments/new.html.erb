@@ -7,7 +7,7 @@
       <div class="box-body">
         <div class="row">
           <div class="col-md-6">
-            <p class="header-title"> Local Taxes </p>
+            <p class="header-title"> <b> Local Taxes</b> </p>
             <div class="row">
               <div class="col-md-1">
               </div>
@@ -20,6 +20,46 @@
                 </span>
               </div>
             </div>
+            <p class="header-title"><b>Fees</b> </p>
+            <div class="row">
+              <div class="col-md-1">
+              </div>
+              <div class="col-md-8">
+                Mayors Permit Fee
+              </div>
+              <div class="col-md-3">
+                <span class="pull-right">
+                  <%=number_to_currency @business.mayors_permit_fees.total %>
+                </span>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-1">
+              </div>
+              <div class="col-md-8">
+                Police Clearance Fee
+              </div>
+              <div class="col-md-3">
+                <span class="pull-right">
+                  <%=number_to_currency @business.police_clearance_fee%>
+                </span>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-1">
+              </div>
+              <div class="col-md-8">
+                Health Clearance
+              </div>
+              <div class="col-md-3">
+                <span class="pull-right">
+                  <%=number_to_currency@business.health_clearance_fee %>
+                </span>
+              </div>
+            </div>
+            <hr>
           </div>
           <div class="col-md-6">
           </div>

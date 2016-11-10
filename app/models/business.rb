@@ -8,6 +8,7 @@ class Business < ApplicationRecord
   has_one :retirement
   belongs_to :taxpayer
   belongs_to :business_classification
+  belongs_to :mode_of_payment
   has_many :addresses, as: :addressable
   has_many :business_activities
   has_many :line_of_businesses, through: :business_activities
@@ -21,6 +22,18 @@ class Business < ApplicationRecord
   delegate :retired?, to: :retirement
   def current_address
     addresses.current.last.try(:address_details)
+  end
+
+  def total_taxes
+  end
+  def total_fees
+    mayors_permit_fees.total
+  end
+  def police_clearance_fee
+    50
+  end
+  def health_clearance_fee
+    150
   end
 
 end

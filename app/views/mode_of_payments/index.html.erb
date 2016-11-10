@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Mode Of Payments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mode_of_payments.each do |mode_of_payment| %>
+      <tr>
+        <td><%= mode_of_payment.name %></td>
+        <td><%= link_to 'Show', mode_of_payment %></td>
+        <td><%= link_to 'Edit', edit_mode_of_payment_path(mode_of_payment) %></td>
+        <td><%= link_to 'Destroy', mode_of_payment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mode Of Payment', new_mode_of_payment_path %>

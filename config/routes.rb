@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :mode_of_payments
   devise_for :users
   resources :taxpayers do
     resources :businesses, only: [:new, :create], module: :taxpayers

@@ -16,7 +16,7 @@ module Taxpayers
       end
     end
     def business_params
-      params.require(:business).permit(:name, :logo, :business_classification_id,
+      params.require(:business).permit(:name, :logo, :business_classification_id, :mode_of_payment_id,
       business_activities_attributes: [:line_of_business_id],
       addresses_attributes:[:street, :house_number, :building_name, :unit_number, :barangay, :municipality, :province, :current, :id])
     end

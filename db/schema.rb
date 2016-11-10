@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161110013013) do
+ActiveRecord::Schema.define(version: 20161110021702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,8 @@ ActiveRecord::Schema.define(version: 20161110013013) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.integer  "business_classification_id"
+    t.integer  "mode_of_payment_id"
+    t.index ["mode_of_payment_id"], name: "index_businesses_on_mode_of_payment_id", using: :btree
     t.index ["taxpayer_id"], name: "index_businesses_on_taxpayer_id", using: :btree
   end
 
@@ -143,6 +145,13 @@ ActiveRecord::Schema.define(version: 20161110013013) do
 
   create_table "line_of_businesses", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "mode_of_payments", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "recurrence"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
