@@ -1,0 +1,15 @@
+<% @entries.each do |entry| %>
+  <tr>
+    <td><%= entry.date.strftime("%B %e, %Y") %></td>
+
+    <td><%=link_to entry.description.truncate(200), accounting_entry_path(entry) %></td>
+    <% if entry.entriable_type=='Business' %>
+    <td><%=entry.entriable.owner.try(:full_name)%></td>
+    <% else %>
+    <td><%=entry.entriable.try(:full_name)%></td>
+    <% end %>
+
+    <td><%=entry.recorder.try(:full_name) %></td>
+    <td><span class='pull-right'><%=number_to_currency entry.debit_amounts.sum(:amount) %></span></td>
+  </tr>
+<% end %>

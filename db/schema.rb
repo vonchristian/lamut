@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161110010410) do
+ActiveRecord::Schema.define(version: 20161110013013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.string   "code"
+    t.string   "type"
+    t.string   "name",                       null: false
+    t.boolean  "contra",     default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["code"], name: "index_accounts_on_code", using: :btree
+  end
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "addressable_id"
@@ -33,6 +43,20 @@ ActiveRecord::Schema.define(version: 20161110010410) do
     t.index ["addressable_type"], name: "index_addresses_on_addressable_type", using: :btree
     t.index ["municipality_id"], name: "index_addresses_on_municipality_id", using: :btree
     t.index ["province_id"], name: "index_addresses_on_province_id", using: :btree
+  end
+
+  create_table "amounts", force: :cascade do |t|
+    t.string   "type"
+    t.integer  "account_id"
+    t.integer  "entry_id"
+    t.decimal  "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "entry_id"], name: "index_amounts_on_account_id_and_entry_id", using: :btree
+    t.index ["account_id"], name: "index_amounts_on_account_id", using: :btree
+    t.index ["entry_id", "account_id"], name: "index_amounts_on_entry_id_and_account_id", using: :btree
+    t.index ["entry_id"], name: "index_amounts_on_entry_id", using: :btree
+    t.index ["type"], name: "index_amounts_on_type", using: :btree
   end
 
   create_table "barangays", force: :cascade do |t|
@@ -81,6 +105,18 @@ ActiveRecord::Schema.define(version: 20161110010410) do
     t.datetime "logo_updated_at"
     t.integer  "business_classification_id"
     t.index ["taxpayer_id"], name: "index_businesses_on_taxpayer_id", using: :btree
+  end
+
+  create_table "entries", force: :cascade do |t|
+    t.string   "reference_number"
+    t.datetime "date"
+    t.integer  "entriable_id"
+    t.string   "entriable_type"
+    t.string   "description"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["entriable_id"], name: "index_entries_on_entriable_id", using: :btree
+    t.index ["entriable_type"], name: "index_entries_on_entriable_type", using: :btree
   end
 
   create_table "fees", force: :cascade do |t|

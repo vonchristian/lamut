@@ -9,6 +9,9 @@ class GrossSale < ApplicationRecord
   def self.with_unpaid_tax
     all.select{|a| a.tax_paid? == false }
   end
+  def self.for_prev_year
+    all.select{ |a| a.calendar_year.year == Time.zone.now.prev_year.year }.last
+  end
   def tax_paid?
     false
   end
