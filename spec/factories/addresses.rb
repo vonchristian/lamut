@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :address do
-    addresable_id 1
+    addressable_id 1
     addressable_type "MyString"
     house_number "MyString"
     building_name "MyString"

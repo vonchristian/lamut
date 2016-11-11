@@ -16,10 +16,11 @@ class Business < ApplicationRecord
   has_many :gross_sales
 
   accepts_nested_attributes_for :addresses, :business_activities
+
   delegate :name, to: :taxpayer, prefix: true
   delegate :name, to: :business_classification, prefix: true, allow_nil: true
-
   delegate :retired?, to: :retirement
+
   def current_address
     addresses.current.last.try(:address_details)
   end

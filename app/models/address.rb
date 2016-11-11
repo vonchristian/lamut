@@ -7,6 +7,6 @@ class Address < ApplicationRecord
     all.where(current: true)
   end
   def address_details
-    "#{house_number} #{unit_number} #{building_name} #{street} #{barangay.try(:name)}, #{municipality.try(:name)}, #{province.try(:name)}"
+    "#{house_number} #{unit_number} #{building_name} #{street}, #{barangay.try(:name)}, #{municipality.try(:name)}, #{province.try(:name)}"
   end
 end
