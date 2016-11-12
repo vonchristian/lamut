@@ -1,0 +1,59 @@
+<div class="row">
+<div class="col-md-12">
+  <div class="box box-solid">
+    <div class="box-header">
+    </div>
+    <div class="box-body">
+  <div class="col-md-6">
+  </div>
+  <div class="col-md-5">
+  <%= simple_form_for @business do |f| %>
+    <%= f.error_notification %>
+    <center>
+            <%= image_tag @business.logo.url(:thumb), class: "img-circle" %>
+            <%= f.input :logo, as: :file %>
+          </center>
+    <%=f.input :name, label: "Business Name" %>
+    <h4>Address</h4>
+    <%=f.simple_fields_for :addresses do |a| %>
+    <div class="row">
+      <div class="col-md-6">
+    <%= a.input :house_number %>
+  </div>
+  <div class="col-md-6">
+    <%= a.input :unit_number %>
+  </div>
+  <div class="col-md-12">
+    <%= a.input :building_name %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <%=a.input :street, label: "Street/Sitio"%>
+  </div>
+  <div class="col-md-6">
+    <%= a.input :barangay_id, collection: Barangay.all.map{|a| [a.name, a.id] } %>
+  </div>
+    <div class="col-md-6">
+    <%= a.input :municipality_id, collection: Municipality.all.map{|a| [a.name, a.id] }, default: Municipality.first %>
+  </div>
+    <div class="col-md-6">
+    <%= a.input :province_id, collection: Province.all.map{|a| [a.name, a.id] }, default: Province.first%>
+    <%= a.input :current, as: :boolean%>
+  </div>
+</div>
+<% end %>
+<br>
+<h4>Line of Business </h4>
+
+<%=f.simple_fields_for :business_activities do |l| %>
+  <%=l.input :line_of_business_id, collection: LineOfBusiness.all.map{|a| [a.name, a.id]} %>
+<% end %>
+
+<%=f.input :business_classification_id, collection: BusinessClassification.all.map{|a| [a.name, a.id]}, as: :radio_buttons %>
+
+<%=f.input :mode_of_payment_id, collection: ModeOfPayment.all.map{|a| [a.name, a.id]}, as: :radio_buttons %>
+    <div class="modal-footer">
+      <%= f.submit "Save Business", class: "btn btn-primary" %>
+    </div>
+  <% end %>

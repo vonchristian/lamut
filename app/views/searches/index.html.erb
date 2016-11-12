@@ -4,7 +4,7 @@
       <div class="box-header with-border">
         <div class="row">
           <div class="col-md-2">
-            <p class="text-muted"> Search Results </p>
+            <p class="text-muted"> <span class="badge"><%=@results.count %></span> Search Results </p>
           </div>
           <div class="col-md-6">
             <%=form_tag searches_path, method: :get, class: "search-form" do %>

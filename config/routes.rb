@@ -14,7 +14,7 @@ root :to => 'accounting/accounts#index', :constraints => lambda { |request| requ
     resource :tin, only: [:new, :create], module: :taxpayers
   end
   resources :fees
-  resources :businesses, only: [:index, :show] do
+  resources :businesses, only: [:index, :show, :edit, :update] do
     resources :assessments, only: [:new, :create], module: :businesses
     resources :business_activities, only: [:new, :create], module: :businesses
     resource :retirement, only: [:new, :create], module: :businesses

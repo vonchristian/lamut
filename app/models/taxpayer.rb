@@ -1,6 +1,9 @@
 class Taxpayer < ApplicationRecord
   include PgSearch
-  multisearchable :against => [:first_name, :middle_name, :last_name]
+  multisearchable :against => [:first_name, :middle_name, :last_name],
+  :using => [:tsearch, :dmetaphone, :trigrams],
+    :ignoring => :accents
+                
   has_one :tin
   has_many :addresses, as: :addressable
   has_many :businesses

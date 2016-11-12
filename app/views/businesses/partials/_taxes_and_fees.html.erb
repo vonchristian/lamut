@@ -1,5 +1,5 @@
 <div class="tab-pane" id="taxes-and-fees">
-  <%=link_to "New Assessment", new_business_assessment_path(@business), class: "btn btn-primary" %>
+  <%=link_to "New Assessment", new_business_assessment_path(@business), class: "btn btn-primary btn-sm pull-right" %>
   <p> Taxes </p>
     Business Tax <% @business.gross_sales.with_unpaid_tax.each do |gross_sale| %>
     <%=gross_sale.amount %>
