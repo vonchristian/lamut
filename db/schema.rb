@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161112101924) do
+ActiveRecord::Schema.define(version: 20161112134918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,10 +145,18 @@ ActiveRecord::Schema.define(version: 20161112101924) do
     t.index ["business_id"], name: "index_gross_sales_on_business_id", using: :btree
   end
 
-  create_table "line_of_businesses", force: :cascade do |t|
+  create_table "line_of_business_classifications", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "line_of_businesses", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.integer  "line_of_business_classification_id"
+    t.index ["line_of_business_classification_id"], name: "index_line_of_businesses_on_line_of_business_classification_id", using: :btree
   end
 
   create_table "mode_of_payments", force: :cascade do |t|
@@ -248,6 +256,7 @@ ActiveRecord::Schema.define(version: 20161112101924) do
   add_foreign_key "business_activities", "line_of_businesses"
   add_foreign_key "businesses", "taxpayers"
   add_foreign_key "gross_sales", "businesses"
+  add_foreign_key "line_of_businesses", "line_of_business_classifications"
   add_foreign_key "municipalities", "provinces"
   add_foreign_key "retirements", "businesses"
   add_foreign_key "tins", "taxpayers"

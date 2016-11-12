@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :line_of_business_classifications
   get 'collections/autocomplete_collection_reference_number'
   resources :searches, only: [:index]
 

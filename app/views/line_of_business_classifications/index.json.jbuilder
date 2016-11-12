@@ -1,0 +1,1 @@
+json.array! @line_of_business_classifications, partial: 'line_of_business_classifications/line_of_business_classification', as: :line_of_business_classification

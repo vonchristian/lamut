@@ -1,0 +1,1 @@
+json.partial! "line_of_business_classifications/line_of_business_classification", line_of_business_classification: @line_of_business_classification

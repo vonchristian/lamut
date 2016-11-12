@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Line Of Business Classifications</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @line_of_business_classifications.each do |line_of_business_classification| %>
+      <tr>
+        <td><%= line_of_business_classification.name %></td>
+        <td><%= link_to 'Show', line_of_business_classification %></td>
+        <td><%= link_to 'Edit', edit_line_of_business_classification_path(line_of_business_classification) %></td>
+        <td><%= link_to 'Destroy', line_of_business_classification, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Line Of Business Classification', new_line_of_business_classification_path %>

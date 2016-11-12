@@ -17,34 +17,34 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-12">
     <div class="box box-solid">
       <div class="box-header with-border">
-        <i class="icon-location-pin"></i> Lines of Business
+        <i class="icon-layers"></i> Lines of Business and Corresponding Mayors Permit Fees
         <span class="pull-right">
           <%=link_to new_settings_line_of_business_path do %>
             <btn class="btn btn-default btn-icon"><i class="fa fa-plus-circle"></i> </btn>
           <% end %>
       </div>
       <div class="box-body">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Business Activity</th>
-              <th> Mayors Permit Fee</th>
-            </tr>
-          </thead>
-          <tbody>
+        <% LineOfBusinessClassification.all.each do |line_of_business_classification| %>
+        <div class="row">
+          <div class="col-md-12">
+          <strong><%=line_of_business_classification.name %></strong><br>
+          <% line_of_business_classification.line_of_businesses.each do |line_of_business| %>
+          <div class="row">
+            <div class="col-md-6 col-md-offset-1">
+              <span class="text-muted"> <%=line_of_business.name %></span>
+            </div>
+            <div class="col-md-3">
+              <p class="pull-right text-muted"><%=number_to_currency line_of_business.mayors_permit_fee_amount %></p>
+            </div>
+          </div>
+          <% end %>
 
-        <% LineOfBusiness.all.each do |line_of_business| %>
-        <tr>
-          <td><%=line_of_business.name %></td>
-          <td><%=number_to_currency line_of_business.mayors_permit_fee_amount %></td>
-        </tr>
         <% end %>
-      </tbody>
-    </table>
-      </div>
+
+    </div>
     </div>
   </div>
 </div>

@@ -1,9 +1,27 @@
 <div class="row">
   <div class="col-md-9">
   <div class="box box-solid">
-
     <div class="box-header">
-      <%= link_to 'New Taxpayer', new_taxpayer_path, class: "btn btn-primary" %>
+      <div class="row">
+        <div class="col-md-3">
+          <h4>Taxpayers</h4>
+        </div>
+        <div class="col-md-6">
+          <%=form_tag businesses_path, method: :get, class: "search-form" do %>
+            <div class="input-group">
+              <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search..." %>
+              <span class="input-group-btn">
+                <%= button_tag(type: 'submit', id: "search-btn", class: "btn btn-flat") do %>
+                  <i class="fa fa-search"></i>
+                <% end %>
+              </span>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-md-3">
+          <%= link_to 'New Taxpayer', new_taxpayer_path, class: "btn btn-primary" %>
+        </div>
+      </div>
     </div>
     <div class="box-body">
 <div class="table table-responsive">
