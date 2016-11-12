@@ -4,31 +4,27 @@
       New Collection Details
     </div>
     <div class="box-body">
-    <%= simple_form_for @entry, url: :collections, html: { style: "display:inline;" } do |f| %>
-    <div class="modal-body">
-      <ul class="errors text-danger">
-      </ul>
-<div class="row">
-  <div class="col-md-6">
-        <%=f.input :date, as: :string, input_html: { class: "datepicker" } %>
-</div>
-<div class="col-md-6">
-<%=f.input :reference_number, label: "OR Number" %>
-
-</div>
-</div>
-<%=f.input :entriable_type, input_html: {value: "Taxpayer" } %>
-<%=f.input :entriable_id, label: "Taxpayer", collection: Taxpayer.all.map{|a| [a.first_name_and_last_name, a.id]} %>
-          <%=f.input :description %>
-
-    <%=f.simple_fields_for :debit_amounts do |ff| %>
-    <%=ff.input :amount %>
-    <div class="row">
-      <div class="col-md-12">
-    <%=ff.input :account, collection: Accounting::Account.all.pluck(:name), input_html: {class: 'input-medium'} %>
-  </div>
-</div>
-    <% end %>
+      <%= simple_form_for @entry, url: :collections, html: { style: "display:inline;" } do |f| %>
+        <%=f.error_notification %>
+        <div class="row">
+          <div class="col-md-6">
+            <%=f.input :date, as: :string, input_html: { class: "datepicker" } %>
+          </div>
+          <div class="col-md-6">
+            <%=f.input :reference_number, label: "OR Number" %>
+          </div>
+        </div>
+        <%=f.input :entriable_type, input_html: {value: "Taxpayer" }, as: :hidden %>
+        <%=f.input :entriable_id, label: "Taxpayer", collection: Taxpayer.all.map{|a| [a.first_name_and_last_name, a.id]} %>
+        <%=f.input :description %>
+        <%=f.simple_fields_for :debit_amounts do |ff| %>
+          <%=ff.input :amount %>
+          <div class="row">
+            <div class="col-md-12">
+              <%=ff.input :account, collection: Accounting::Account.all.pluck(:name), input_html: {class: 'input-medium'} %>
+            </div>
+          </div>
+        <% end %>
     <%=f.simple_fields_for :credit_amounts do |ff| %>
     <%=ff.input :amount %>
     <%=ff.input :account, collection: Accounting::Account.all.pluck(:name) %>
