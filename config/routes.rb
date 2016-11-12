@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'collections/autocomplete_collection_reference_number'
+  resources :searches, only: [:index]
 
   root :to => "taxpayers#index", :constraints => lambda { |request| request.env['warden'].user.nil? }, as: :unauthenticated_root
 root :to => 'dashboards#bplo', :constraints => lambda { |request| request.env['warden'].user.role == 'bplo_officer' if request.env['warden'].user }, as: :bplo_root

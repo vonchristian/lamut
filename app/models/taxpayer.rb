@@ -1,4 +1,6 @@
 class Taxpayer < ApplicationRecord
+  include PgSearch
+  multisearchable :against => [:first_name, :middle_name, :last_name]
   has_one :tin
   has_many :addresses, as: :addressable
   has_many :businesses
@@ -16,7 +18,7 @@ class Taxpayer < ApplicationRecord
   def full_name
     "#{first_name} #{middle_name} #{last_name}"
   end
-  
+
   def first_name_and_last_name
     "#{first_name} #{last_name}"
   end

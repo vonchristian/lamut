@@ -1,4 +1,6 @@
 class Business < ApplicationRecord
+  include PgSearch
+  multisearchable :against => [:name]
   has_attached_file :logo, styles: { medium: "295x295>",
                                       thumb: "100x100#",
                                       small: "50x50#"},

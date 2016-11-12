@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-solid">
+      <div class="box-header with-border">
+        <div class="row">
+          <div class="col-md-2">
+            <p class="text-muted"> Search Results </p>
+          </div>
+          <div class="col-md-6">
+            <%=form_tag searches_path, method: :get, class: "search-form" do %>
+            <div class="input-group">
+              <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search..." %>
+              <span class="input-group-btn">
+                <%= button_tag(type: 'submit', id: "search-btn", class: "btn btn-flat") do %>
+                  <i class="fa fa-search"></i>
+                <% end %>
+              </span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      </div>
+      <div class="box-body">
+        <% if @results.empty? %>
+          <p class="text-muted"> No search results found. </p>
+        <% else %>
+        <% @results.each do |result| %>
+        <span><%= link_to result.searchable.try(:name), result.searchable %></span><br>
+        <small class="text-muted"> <%=result.searchable.class %></small>
+        <hr>
+        <% end %>
+        <% end %>
+      </div>
+      <div class="box-footer">
+      </div>
+    </div>
+  </div>
+</div>
