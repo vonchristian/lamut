@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
-  resources :mode_of_payments
-  devise_for :users
+  get 'collections/autocomplete_collection_reference_number'
+
+  root :to => "taxpayers#index", :constraints => lambda { |request| request.env['warden'].user.nil? }, as: :unauthenticated_root
+root :to => 'dashboards#bplo', :constraints => lambda { |request| request.env['warden'].user.role == 'bplo_officer' if request.env['warden'].user }, as: :bplo_root
+root :to => 'dashboards#collection_clerk', :constraints => lambda { |request| request.env['warden'].user.role == 'collection_clerk' if request.env['warden'].user }, as: :collection_clerk_root
+root :to => 'accounting/accounts#index', :constraints => lambda { |request| request.env['warden'].user.role == 'bookkeeper' if request.env['warden'].user }, as: :bookkeeper_root
+  resources :collections, only: [:index, :show, :new, :create]
+  resources :mode_of_payments, only: [:new, :create]
+  devise_for :users, controllers: { sessions: 'users/sessions' , registrations: "settings/employees"}
   resources :taxpayers do
     resources :businesses, only: [:new, :create], module: :taxpayers
     resource :tin, only: [:new, :create], module: :taxpayers
@@ -18,6 +25,8 @@ Rails.application.routes.draw do
     resources :barangays, only: [:new, :create]
     resources :line_of_businesses, only: [:new, :create]
     resources :business_classifications, only: [:new, :create, :show]
+    resources :employees, only: [:new, :create, :show]
+
   end
 
 resources :accounting, only:[:index]

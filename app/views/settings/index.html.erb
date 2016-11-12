@@ -66,3 +66,32 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-4">
+    <div class="box box-solid">
+      <div class="box-body">
+        <i class="icon-user"></i> Employees
+        <span class="pull-right">
+          <%=link_to new_settings_employee_path do %>
+            <btn class="btn btn-primary"><i class="fa fa-user-plus"></i> New Employee </btn>
+          <% end %>
+        </span>
+        <hr>
+        <% User.all.each do |user| %>
+        <%=link_to settings_employee_path(user) do  %>
+          <div class="row">
+            <div class="col-md-3">
+              <%=image_tag(user.photo.url(:small), class: "img-circle") %>
+            </div>
+            <div class="col-md-9">
+              <strong><%=user.first_name_and_last_name.try(:titleize) %></strong>
+                <small class="help-block"><%=user.role.try(:titleize).try(:upcase) %></small>
+            </div>
+          </div>
+          <br>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

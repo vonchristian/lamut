@@ -1,0 +1,41 @@
+
+<div class="col-md-12">
+  <div class="card">
+    <div class="header">
+    </div>
+    <div class="box-body">
+      <%=simple_form_for @user, url: :settings_employees, html: {class: 'form-horizontal'}, wrapper: :horizontal_form do |f| %>
+        <div class="row">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-5 col-xs-12 col-sm-12">
+            <%=f.error_notification %>
+            <center>
+              <%= image_tag @user.photo.url(:thumb), class: "img-circle" %>
+              <%= f.input :photo, as: :file %>
+            </center>
+            <h4 class="title"> Employee Information </h4>
+            <%=f.input :first_name, autofocus: true %>
+            <%=f.input :last_name %>
+
+            <h4 class="title"> Account Settings </h4>
+            <%=f.input :email %>
+            <%=f.input :role, collection: User.roles.keys.to_a.map{|a| [a.titleize, a] } %>
+            <%=f.input :password %>
+            <%=f.input :password_confirmation %>
+            <div class="modal-footer">
+              <%=f.submit "Save Employee", class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function() {
+    $("#user_role").select2({
+      theme: "bootstrap"
+    });
+  });
+</script>

@@ -1,0 +1,70 @@
+<div class="row">
+				<div class="col-md-12">
+				  <div class="box box-solid">
+				    <div class="box-header with-border">
+              <div class="row">
+                <div class="col-md-3">
+                  <h4 class="title"> Collections</h4>
+                </div>
+                <div class="col-md-6">
+                  <%=form_tag collections_path, method: :get, id: "search-form" do %>
+                  <div class="input-group">
+                    <%= text_field_tag :name, params[:name], class: "search-query form-control", placeholder: "Search Collection...", type: "search", data: {autocomplete: collections_autocomplete_collection_reference_number_path} %>
+                    <span class="input-group-btn">
+                      <%= button_tag(type: 'submit', class: "btn btn-flat") do %>
+                        <i class="fa fa-search"></i>
+                      <% end %>
+                    </span>
+                  </div>
+                <% end %>
+              </div>
+              <div class="col-md-2 col-md-offset-1">
+                <%=link_to new_collection_path do %>
+                  <span class="btn btn-primary"><i class="icon-plus"></i> New Collection </span>
+                <% end %>
+              </div>
+            </div>
+
+				    </div>
+						<div class="box-body">
+
+
+
+							<div class="table table-responsive">
+								<table class="table table-hover">
+									<thead>
+										<tr class="title">
+                      <th> OR Number </th>
+			                <th> Date </th>
+                      <th> Taxpayer </th>
+											<th> Description </th>
+                      <th> <span class="pull-right"> Amount </span> </th>
+											<th> Employee </th>
+
+										</tr>
+									</thead>
+									<tbody class="entry-index">
+                    <% @collections.each do |entry| %>
+  <tr>
+    <td><%=link_to entry.reference_number, entry %>
+    <td><%= entry.date.strftime("%B %e, %Y") %></td>
+    <td><%=entry.entriable.try(:name) %></td>
+    <td><%=entry.description.truncate(200) %></td>
+    <td><span class="pull-right"><%=number_to_currency entry.debit_amounts.sum(:amount) %></span></td>
+
+    <td><%=image_tag(entry.recorder.photo.url(:small), class: "img-circle", width: 25, height:25) %> &nbsp; <%=entry.recorder.try(:name) %></td>
+
+  </tr>
+<% end %>
+
+									</tbody>
+								</table>
+								<div class="modal-footer">
+				          <center><%= paginate @collections %></center>
+				        </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
