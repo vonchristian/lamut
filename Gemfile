@@ -25,8 +25,7 @@ gem 'kaminari'
 gem 'pg_search'
 gem 'devise'
 gem "paperclip", "~> 5.0.0"
-gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
-                              :git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
+gem 'bootstrap-datepicker-rails'
 gem 'pundit'
 gem "select2-rails"
 gem 'public_activity'
