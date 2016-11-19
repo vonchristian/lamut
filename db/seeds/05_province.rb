@@ -1,0 +1,1 @@
+Province.create name: "Ifugao"

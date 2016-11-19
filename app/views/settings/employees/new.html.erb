@@ -1,12 +1,12 @@
 
 <div class="col-md-12">
-  <div class="card">
-    <div class="header">
+  <div class="box box-danger">
+    <div class="box-header">
     </div>
     <div class="box-body">
       <%=simple_form_for @user, url: :settings_employees, html: {class: 'form-horizontal'}, wrapper: :horizontal_form do |f| %>
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-6">
           </div>
           <div class="col-md-5 col-xs-12 col-sm-12">
             <%=f.error_notification %>
@@ -20,11 +20,11 @@
 
             <h4 class="title"> Account Settings </h4>
             <%=f.input :email %>
-            <%=f.input :role, collection: User.roles.keys.to_a.map{|a| [a.titleize, a] } %>
+            <%=f.input :role, collection: User.roles.keys.to_a.map{|a| [a.titleize, a] }, as: :radio_buttons %>
             <%=f.input :password %>
             <%=f.input :password_confirmation %>
             <div class="modal-footer">
-              <%=f.submit "Save Employee", class: "btn btn-primary" %>
+              <%=f.submit "Save Employee", class: "btn btn-danger btn-flat" %>
             </div>
           </div>
         </div>

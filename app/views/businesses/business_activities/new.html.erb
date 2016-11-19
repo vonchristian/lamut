@@ -1,5 +1,79 @@
-<%=simple_form_for [@business, @business_activity], url: :business_business_activities do |f| %>
-  <%=f.error_notification %>
-  <%=f.input :line_of_business_id, collection: LineOfBusiness.all.map{|a| [a.name_and_fee, a.id]}, as: :radio_buttons %>
-  <%=f.submit "Add Line of Business", class: "btn btn-primary" %>
-<% end %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-default">
+      <div class="box-body">
+        <div class="row">
+          <div class="col-md-5 border-right">
+
+<div class="row">
+  <div class="col-md-1">
+    <br>
+            <%=link_to business_path(@business) do %>
+             <center class="icon-arrow-left-circle text-muted fa-2x" title="Back to Business" data-toggle="tooltip"></center>
+            <% end %>
+          </div>
+          <div class="col-md-10">
+          <h4 class="box-title"><%=@business.name %></h4>
+        </div>
+      </div>
+            <% @business.business_activities.each do |business_activity| %>
+              <div class="row">
+              <div class="col-md-6 col-md-offset-1">
+                <span class="text-muted"> <%=business_activity.line_of_business_name %></span>
+              </div>
+              <div class="col-md-3">
+                <span class="pull-right text-muted"><%=number_to_currency business_activity.line_of_business_mayors_permit_fee_amount %></span>
+              </div>
+              <div class="col-md-2">
+                <%=link_to business_activity, method: :delete, data: {confirm: "Are you sure"} do %>
+                  <span class="text-danger pull-right" title="Remove" data-toggle="tooltip"><i class="icon-close"></i></span>
+                <% end %>
+
+              </div>
+            </div>
+<hr>
+          <% end %>
+
+
+
+
+        </div>
+          <div class="col-md-6 col-md-offset-1">
+            <h4 class="box-title"> Business Activities </h4>
+            <hr>
+            <% LineOfBusinessClassification.all.each do |line_of_business_classification| %>
+              <div class="row">
+                <div class="col-md-10">
+                  <strong><%=line_of_business_classification.name %></strong><br>
+                </div>
+              </div>
+              <br>
+                  <% line_of_business_classification.line_of_businesses.each do |line_of_business| %>
+                    <div class="row">
+                      <div class="col-md-6 col-md-offset-1">
+                        <span class="text-muted"> <%=line_of_business.name %></span>
+                      </div>
+                      <div class="col-md-2">
+                        <span class="pull-right text-muted"><%=number_to_currency line_of_business.mayors_permit_fee_amount %></span>
+                      </div>
+                      <div class="col-md-3">
+                        <%=simple_form_for [@business, BusinessActivity.new], url: :business_business_activities do |f| %>
+                        <%=f.error_notification %>
+                        <%=f.input :line_of_business_id, input_html: {value: line_of_business.id }, label: false, as: :hidden %>
+                        <%if  @business.line_of_businesses.include?(line_of_business) %>
+                        <btn class="fa fa-toggle-on text-primary" title="Already added" data-toggle="tooltip"></btn>
+                        <% else %>
+                        <%=f.submit "Add", class: "btn btn-default btn-xs" %>
+                        <% end %>
+                        <% end %>
+                      </div>
+                    </div>
+                    <hr>
+                  <% end %>
+            <% end %>
+
+        </div>
+
+    </div>
+  </div>
+</div>

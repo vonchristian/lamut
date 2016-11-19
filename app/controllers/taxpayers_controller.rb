@@ -4,7 +4,11 @@ class TaxpayersController < ApplicationController
   # GET /taxpayers
   # GET /taxpayers.json
   def index
-    @taxpayers = Taxpayer.all
+    if params[:search].present?
+      @taxpayers = Taxpayer.text_search(params[:search]).page(params[:page]).per(50)
+    else
+      @taxpayers = Taxpayer.all.page(params[:page]).per(50)
+    end
   end
 
   # GET /taxpayers/1

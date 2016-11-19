@@ -1,9 +1,10 @@
 class Taxpayer < ApplicationRecord
   include PgSearch
   multisearchable :against => [:first_name, :middle_name, :last_name],
-  :using => [:tsearch, :dmetaphone, :trigrams],
+    :using => [:tsearch, :dmetaphone, :trigrams],
     :ignoring => :accents
-                
+  pg_search_scope :text_search, :against => [:first_name, :middle_name, :last_name]
+
   has_one :tin
   has_many :addresses, as: :addressable
   has_many :businesses
@@ -31,6 +32,6 @@ class Taxpayer < ApplicationRecord
   end
 
   def current_address
-    addresses.current.last.try(:address_details)
+    addresses.current.last
   end
 end

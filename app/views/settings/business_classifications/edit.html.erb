@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <div class="box box-danger">
+      <div class="box-header with-border">
+        <h4 class="box-title"> Business Classification Details </h4>
+      </div>
+      <div class="box-body">
+        <%=simple_form_for @business_classification, url: :settings_business_classification do |f| %>
+          <%=f.error_notification %>
+          <%=f.input :name, as: :text, input_html: {rows: 10} %>
+          <div class="modal-footer">
+            <%=f.submit "Update Business Classification", class: "btn btn-danger btn-flat" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

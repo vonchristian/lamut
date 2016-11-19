@@ -13,7 +13,7 @@ module Settings
       end
     end
     def line_of_business_params
-      params.require(:line_of_business).permit(:name, mayors_permit_fee_attributes: [:amount])
+      params.require(:line_of_business).permit(:name, :line_of_business_classification_id, mayors_permit_fee_attributes: [:amount])
     end
   end
 end

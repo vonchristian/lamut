@@ -8,13 +8,29 @@
 
              <h3 class="profile-username text-center"><%= @taxpayer.first_name_and_last_name %></h3>
 
-             <p class="text-muted text-center"><%=@taxpayer.current_address %></p>
+             <p class="text-muted text-center"><%=@taxpayer.current_address.try(:address_details) %></p>
 
              <ul class="list-group list-group-unbordered">
-
+               <li class="list-group-item">
+                 <b>Businesses</b> <a class="pull-right"><%=@taxpayer.businesses.count %></a>
+               </li>
+               <li class="list-group-item">
+                 <b>Real Properties</b> <a class="pull-right"></a>
+               </li>
+               <li class="list-group-item">
+                 <b>Motorized Tricycles</b> <a class="pull-right"></a>
+               </li>
 
              </ul>
-             <%=link_to "Update Info", edit_taxpayer_path(@taxpayer), class: "btn btn-primary btn-block" %>
+             <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8">
+                  <%=link_to "Update Info", edit_taxpayer_path(@taxpayer), class: "btn btn-primary btn-flat btn-block" %>
+                </div>
+                <div class="col-md-2">
+                </div>
+              </div>
 
            </div>
            <!-- /.box-body -->
@@ -40,8 +56,16 @@
              <hr>
 
              <strong><i class="fa fa-map-marker margin-r-5"></i> Address</strong>
+             <% if @taxpayer.addresses.current.present? %>
+             <span class="pull-right">
+                <%=link_to edit_address_path(@taxpayer.current_address.id) do %>
+                  <btn class="btn btn-default btn-xs" title="Edit Address", data-toggle="tooltip"><i class="fa fa-pencil"></i></span>
+                <% end %>
+              </span>
+              <% end %>
 
-             <p class="text-muted"><%=@taxpayer.current_address %></p>
+             <p class="text-muted"><%=@taxpayer.current_address.try(:address_details) %>
+             </p>
 
              <hr>
              <strong><i class="fa fa-phone margin-r-5"></i> Mobile Number</strong>
@@ -51,12 +75,12 @@
              <hr>
              <strong><i class="fa fa-male"></i> Gender</strong>
 
-             <p class="text-muted"><%=@taxpayer.sex %></p>
+             <p class="text-muted"><%=@taxpayer.sex.try(:capitalize) %></p>
 
              <hr>
-             <strong><i class="fa fa-male"></i> Civil Status</strong>
+             <strong><i class="fa fa-gender"></i> Civil Status</strong>
 
-             <p class="text-muted"><%=@taxpayer.civil_status %></p>
+             <p class="text-muted"><%=@taxpayer.civil_status.try(:capitalize) %></p>
 
              <hr>
 

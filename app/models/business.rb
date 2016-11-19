@@ -40,4 +40,8 @@ class Business < ApplicationRecord
     150
   end
 
+  def gross_sale_entered(year)
+    gross_sales.each.map{|a| a.calendar_year.year}.include?(year)
+  end
+
 end

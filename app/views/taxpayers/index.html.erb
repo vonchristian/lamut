@@ -1,66 +1,59 @@
 <div class="row">
-  <div class="col-md-9">
-  <div class="box box-solid">
-    <div class="box-header">
-      <div class="row">
-        <div class="col-md-3">
-          <h4>Taxpayers</h4>
+  <div class="col-md-8">
+    <div class="box box-primary">
+      <div class="box-body">
+        <div class="row">
+          <div class="col-md-3">
+            <h4 class="title">Taxpayers</h4>
+          </div>
+          <div class="col-md-6">
+            <%=form_tag taxpayers_path, method: :get, class: "search-form" do %>
+              <div class="input-group">
+                <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search..." %>
+                <span class="input-group-btn">
+                  <%= button_tag(type: 'submit', id: "search-btn", class: "btn btn-flat") do %>
+                    <i class="fa fa-search"></i>
+                  <% end %>
+                </span>
+              </div>
+            <% end %>
+          </div>
+          <div class="col-md-3">
+            <%= link_to new_taxpayer_path do %>
+              <span class="btn btn-primary btn-flat pull-right"><i class="fa fa-user-plus"></i> New Taxpayer </span>
+              <% end %>
+          </div>
         </div>
-        <div class="col-md-6">
-          <%=form_tag businesses_path, method: :get, class: "search-form" do %>
-            <div class="input-group">
-              <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search..." %>
-              <span class="input-group-btn">
-                <%= button_tag(type: 'submit', id: "search-btn", class: "btn btn-flat") do %>
-                  <i class="fa fa-search"></i>
-                <% end %>
-              </span>
+      </div>
+      <div class="box-body">
+        <% @taxpayers.each do |taxpayer| %>
+          <%=link_to taxpayer do %>
+            <div class="row">
+              <div class="col-md-1">
+                <%=image_tag(taxpayer.photo.url(:small), class: "img-square") %>
+              </div>
+              <div class="col-md-10">
+                <%= taxpayer.full_name.try(:upcase) %>
+                <small class="help-block">
+                  <i class="fa fa-phone"></i> &nbsp; <%=taxpayer.mobile_number %> &nbsp;
+                  <i class="icon-speech"></i> &nbsp; <%=taxpayer.email %> &nbsp;
+                  <i class="icon-location-pin"></i> &nbsp; <%=taxpayer.current_address %>
+                </small>
+              </div>
+              <div class="col-md-1">
+                <i class="icon-options-vertical"></i>
+              </div>
             </div>
           <% end %>
-        </div>
-        <div class="col-md-3">
-          <%= link_to 'New Taxpayer', new_taxpayer_path, class: "btn btn-primary" %>
+          <br>
+        <% end %>
+        <div class="box-footer">
+          <center><%= paginate @taxpayers, params: { controllers: "taxpayers", action: "index" } %></center>
         </div>
       </div>
     </div>
-    <div class="box-body">
-<div class="table table-responsive">
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Full name</th>
-
-      <th>Address </th>
-
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @taxpayers.each do |taxpayer| %>
-      <tr>
-        <td><%=image_tag(taxpayer.photo.url(:small), class: "img-square") %></td>
-        <td><%= link_to taxpayer.full_name.try(:upcase), taxpayer %>
-            <small class="help-block">
-              <i class="icon-phone"></i> &nbsp; <%=taxpayer.mobile_number %> &nbsp;
-              <i class="icon-speech"></i> &nbsp; <%=taxpayer.email %>
-            </small>
-        </td>
-
-
-        <td><%= taxpayer.current_address %></td>
-
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-</div>
-</div>
-</div>
-</div>
-<div class="col-md-3">
+  </div>
+<div class="col-md-4">
   <div class="box box-default">
     <div class="box-header">
       <i class="icon-graph"></i> Statistics

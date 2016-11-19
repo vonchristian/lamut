@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        Address Details
+      </div>
+      <div class="box-body">
+        <%=simple_form_for @address do |a| %>
+          <%=a.error_notification %>
+          <div class="row">
+            <div class="col-md-6">
+    <%= a.input :house_number %>
+  </div>
+  <div class="col-md-6">
+    <%= a.input :unit_number %>
+  </div>
+  <div class="col-md-12">
+    <%= a.input :building_name %>
+  </div>
+  </div>
+  <div class="row">
+  <div class="col-md-6">
+    <%=a.input :street, label: "Street/Sitio"%>
+  </div>
+  <div class="col-md-6">
+    <%= a.input :barangay_id, collection: Barangay.all.map{|a| [a.name, a.id] } %>
+  </div>
+    <div class="col-md-6">
+    <%= a.input :municipality_id, collection: Municipality.all.map{|a| [a.name, a.id] }, default: Municipality.first %>
+  </div>
+    <div class="col-md-6">
+    <%= a.input :province_id, collection: Province.all.map{|a| [a.name, a.id] }, default: Province.first%>
+    <%= a.input :current, as: :boolean, :input_html => { :checked => true }, as: :hidden %>
+  </div>
+  </div>
+<div class="modal-footer">
+  <%=a.submit "Update Address", class: "btn btn-primary" %>
+</div>
+    <% end %>

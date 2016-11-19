@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161117160322) do
+ActiveRecord::Schema.define(version: 20161119154120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -170,8 +170,12 @@ ActiveRecord::Schema.define(version: 20161117160322) do
     t.integer  "province_id"
     t.string   "name"
     t.integer  "zip_code"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
     t.index ["province_id"], name: "index_municipalities_on_province_id", using: :btree
   end
 

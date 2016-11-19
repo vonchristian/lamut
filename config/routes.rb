@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 root :to => 'dashboards#bplo', :constraints => lambda { |request| request.env['warden'].user.role == 'bplo_officer' if request.env['warden'].user }, as: :bplo_root
 root :to => 'dashboards#collection_clerk', :constraints => lambda { |request| request.env['warden'].user.role == 'collection_clerk' if request.env['warden'].user }, as: :collection_clerk_root
 root :to => 'accounting/accounts#index', :constraints => lambda { |request| request.env['warden'].user.role == 'bookkeeper' if request.env['warden'].user }, as: :bookkeeper_root
+  resources :addresses, only: [:edit, :update]
+  resources :business_activities, only: [:destroy], module: :businesses
+
   resources :collections, only: [:index, :show, :new, :create]
   resources :mode_of_payments, only: [:new, :create]
   devise_for :users, controllers: { sessions: 'users/sessions' , registrations: "settings/employees"}
@@ -20,13 +23,14 @@ root :to => 'accounting/accounts#index', :constraints => lambda { |request| requ
     resources :business_activities, only: [:new, :create], module: :businesses
     resource :retirement, only: [:new, :create], module: :businesses
     resources :gross_sales, only: [:new, :create], module: :businesses
-
+    resources :business_classifications, only: [:edit, :update], module: :businesses
   end
   resources :settings, only: [:index]
   namespace :settings do
     resources :barangays, only: [:new, :create]
     resources :line_of_businesses, only: [:new, :create]
-    resources :business_classifications, only: [:new, :create, :show]
+    resources :line_of_business_classifications, only: [:new, :create]
+    resources :business_classifications, only: [:new, :create, :edit, :update]
     resources :employees, only: [:new, :create, :show]
 
   end

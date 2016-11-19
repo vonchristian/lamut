@@ -1,7 +1,27 @@
-<%=simple_form_for [@business, @gross_sale], url: :business_gross_sales do |f| %>
-  <%=f.error_notification %>
-  <%=f.input :amount %>
-  <%=f.input :calendar_year, as: :string, input_html: { class: "datepicker" } %>
-
-  <%=f.submit "Save Gross Sales", class: "btn btn-primary" %>
-<% end %>
+<div class="row">
+  <div class="col-md-8">
+    <div class="box box-solid">
+      <div class="box-header with-border">
+        <h4 class="box-title"> Gross Sales  Details </h4>
+      </div>
+    <div class="box-body">
+      <div class="row">
+        <div class="col-md-6 border-right">
+          <i class="icon-home"></i> <%=@business.name %>
+        </div>
+        <div class="col-md-5">
+          <%=simple_form_for [@business, @gross_sale], url: :business_gross_sales do |f| %>
+            <%=f.error_notification %>
+            <%=f.input :amount %>
+            <span class="help-block"> Amount must be greater than 36,000 </span>
+            <%=f.input :calendar_year, as: :string, input_html: { class: "datepicker", value: Date.today.last_year.end_of_year } %>
+            <div class="modal-footer">
+              <%=f.submit "Save Gross Sales", class: "btn btn-primary" %>
+              <%=link_to "Cancel", business_path(@business), class: "btn btn-default btn-flat pull-left" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

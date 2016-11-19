@@ -1,22 +1,74 @@
 <div class="tab-pane active" id="info">
-  <i class="icon-layers"></i> <p class="text-muted"> Classification </p>
-  <%=@business.business_classification_name %>
-  <p>Business Activities
-  <span class="pull-right"><%=link_to "Add New", new_business_business_activity_path(@business), class: "btn btn-primary btn-sm" %>
-  </span>
-</p>
-  <hr>
-  <% @business.line_of_businesses.each do |line_of_business| %>
-    <p class="text-muted"><%=line_of_business.name %></p>
-  <% end %>
-  <hr>
-  <p>Gross Sales
-    <span class="pull-right"><%=link_to "Add New", new_business_gross_sale_path(@business), class: "btn btn-primary btn-sm" %>
-    </span>
-   </p>
-   <% @business.gross_sales.each do |gross_sale| %>
-     <p class="text-muted"><%=number_to_currency gross_sale.amount %></p>
-     <i class="icon-calendar"></i><%=gross_sale.calendar_year %>
-   <% end %>
-  <hr>
+  <div class="row">
+    <div class="col-md-7">
+      <div class="row">
+        <div class="col-md-6">
+          <h4 class="box-title"> <i class="icon-layers"></i> <span class="text-muted"> Classification </span></h4>
+        </div>
+        <div class="col-md-6">
+          <%=link_to edit_business_business_classification_path(@business) do %>
+            <span class="btn btn-default btn-flat pull-right"  title="Add New Business Activity" data-toggle="tooltip"><i class="icon-note"></i> Update </span>
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-1">
+          <%=@business.business_classification_name %>
+        </div>
+      </div>
+      <br><br>
+      <div class="row">
+        <div class="col-md-6">
+          <h4 class="box-title text-muted"><i class="icon-badge"></i> Business Activities</h4>
+        </div>
+        <div class="col-md-6">
+          <%=link_to new_business_business_activity_path(@business) do %>
+            <span class="btn btn-default btn-flat pull-right"  title="Add New Business Activity" data-toggle="tooltip"><i class="icon-plus"></i> Add </span>
+          <% end %>
+        </div>
+      </div>
+      <br>
+      <% @business.line_of_businesses.each do |line_of_business| %>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-1">
+        <p><%=line_of_business.name %></p>
+      </div>
+      <div class="col-md-5">
+        <span class="pull-right"><%=number_to_currency line_of_business.mayors_permit_fee_amount %></span>
+      </div>
+      </div>
+        <hr>
+      <% end %>
+      <div class="row">
+        <div class="col-md-6">
+          <h4 class="box-title text-muted"><i class="icon-wallet"></i> Gross Sales</h4>
+        </div>
+        <div class="col-md-6">
+        <%=link_to new_business_gross_sale_path(@business) do %>
+        <span class="btn btn-default btn-flat pull-right"  title="Add New Gross Sale" data-toggle="tooltip"><i class="icon-plus"></i> New Gross Sale </span>
+      <% end %>
+
+      </div>
+    </div>
+    <br>
+       <% @business.gross_sales.each do |gross_sale| %>
+       <div class="row">
+         <div class="col-md-5 col-md-offset-1">
+           <h4 class="box-title"><%=number_to_currency gross_sale.amount %></h4>
+           <i class="fa fa-calendar"></i> &nbsp; <%=gross_sale.calendar_year.strftime("%B, %Y") %>
+
+         </div>
+         <div class="col-md-6">
+           <span class="pull-right"> <%=number_to_currency gross_sale.tax %></span>
+         </div>
+       </div>
+       <br>
+        <% end %>
+      <hr>
+    </div>
+    <div class="col-md-4 col-md-offset-1">
+      <h4 class="box-title"> <i class="icon-bell"></i> Notifications </h4>
+    </div>
+  </div>
+
 </div>

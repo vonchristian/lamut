@@ -1,79 +1,27 @@
 <div class="row">
   <div class="col-md-4">
-    <div class="box box-solid">
+    <div class="box box-default">
       <div class="box-header with-border">
-        <i class="icon-location-pin"></i> Barangays
+        <i class="icon-location-pin"></i> Barangays &nbsp; <span class="label label-default"><%=Barangay.count %></span>
         <span class="pull-right">
           <%=link_to new_settings_barangay_path do %>
-            <btn class="btn btn-default btn-icon"><i class="fa fa-plus-circle"></i> </btn>
+            <btn class="btn btn-default btn-icon" title="New Barangay" data-toggle="tooltip"><i class="fa fa-plus-circle"></i> </btn>
           <% end %>
       </div>
       <div class="box-body">
         <% Barangay.all.each do |barangay| %>
-          <p><%=barangay.name %></p><br>
+          <p><%=barangay.name %></p>
         <% end %>
       </div>
     </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <div class="box box-solid">
-      <div class="box-header with-border">
-        <i class="icon-layers"></i> Lines of Business and Corresponding Mayors Permit Fees
-        <span class="pull-right">
-          <%=link_to new_settings_line_of_business_path do %>
-            <btn class="btn btn-default btn-icon"><i class="fa fa-plus-circle"></i> </btn>
-          <% end %>
-      </div>
-      <div class="box-body">
-        <% LineOfBusinessClassification.all.each do |line_of_business_classification| %>
-        <div class="row">
-          <div class="col-md-12">
-          <strong><%=line_of_business_classification.name %></strong><br>
-          <% line_of_business_classification.line_of_businesses.each do |line_of_business| %>
-          <div class="row">
-            <div class="col-md-6 col-md-offset-1">
-              <span class="text-muted"> <%=line_of_business.name %></span>
-            </div>
-            <div class="col-md-3">
-              <p class="pull-right text-muted"><%=number_to_currency line_of_business.mayors_permit_fee_amount %></p>
-            </div>
-          </div>
-          <% end %>
-
-        <% end %>
-
-    </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-6">
-    <div class="box box-solid">
-      <div class="box-header with-border">
-        <i class="icon-location-pin"></i> Business Classifications
-        <span class="pull-right">
-          <%=link_to new_settings_business_classification_path do %>
-            <btn class="btn btn-default btn-icon"><i class="fa fa-plus-circle"></i> </btn>
-          <% end %>
-      </div>
-      <div class="box-body">
-        <% BusinessClassification.all.each do |business_classification| %>
-          <p><%=link_to business_classification.name, settings_business_classification_path(business_classification) %></p>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
   <div class="col-md-4">
     <div class="box box-solid">
       <div class="box-body">
-        <i class="icon-user"></i> Employees
+        <i class="icon-people"></i> Employees
         <span class="pull-right">
           <%=link_to new_settings_employee_path do %>
-            <btn class="btn btn-primary"><i class="fa fa-user-plus"></i> New Employee </btn>
+            <btn class="btn btn-danger btn-flat"><i class="fa fa-user-plus"></i> New Employee </btn>
           <% end %>
         </span>
         <hr>
@@ -81,7 +29,7 @@
         <%=link_to settings_employee_path(user) do  %>
           <div class="row">
             <div class="col-md-3">
-              <%=image_tag(user.photo.url(:small), class: "img-circle") %>
+              <%=image_tag(user.photo.url(:small), class: "img-square") %>
             </div>
             <div class="col-md-9">
               <strong><%=user.first_name_and_last_name.try(:titleize) %></strong>
@@ -90,6 +38,81 @@
           </div>
           <br>
           <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="box box-solid">
+      <div class="box-body">
+        <i class="icon-equalizer"></i> Municipality Settings
+        <hr>
+        Municipality <%=Municipality.last.try(:name) %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div class="box box-danger">
+      <div class="box-body">
+        <i class="icon-layers"></i> Lines of Business and Corresponding Mayors Permit Fees
+        <span class="pull-right">
+          <%=link_to new_settings_line_of_business_classification_path do %>
+            <btn class="btn btn-danger btn-icon"><i class="fa fa-plus-circle"></i> New Classification</btn>
+          <% end %>
+          <%=link_to new_settings_line_of_business_path do %>
+            <btn class="btn btn-default btn-icon"><i class="fa fa-plus-circle"></i> </btn>
+          <% end %>
+        </span>
+      </div>
+      <div class="box-body">
+        <% LineOfBusinessClassification.all.each do |line_of_business_classification| %>
+          <div class="row">
+            <div class="col-md-12">
+              <strong><%=line_of_business_classification.name %></strong><br>
+              <% line_of_business_classification.line_of_businesses.each do |line_of_business| %>
+                <div class="row">
+                  <div class="col-md-6 col-md-offset-1">
+                    <span class="text-muted"> <%=line_of_business.name %></span>
+                  </div>
+                  <div class="col-md-3">
+                    <p class="pull-right text-muted"><%=number_to_currency line_of_business.mayors_permit_fee_amount %></p>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="box box-default">
+      <div class="box-header with-border">
+        <i class="icon-layers"></i> Business Classifications
+        <span class="pull-right">
+          <%=link_to new_settings_business_classification_path do %>
+            <btn class="btn btn-danger btn-flat"><i class="icon-plus"></i> New Business Classification</btn>
+          <% end %>
+        </span>
+      </div>
+      <div class="box-body">
+        <% BusinessClassification.all.order(:name).each do |business_classification| %>
+        <div class="row">
+          <div class="col-md-9">
+            <p class="text-muted"><%= business_classification.name%></p>
+          </div>
+          <div class="col-md-2">
+            <span class="pull-right">
+              <%=link_to edit_settings_business_classification_path(business_classification) do %>
+                <span title="Edit Business Classification" data-toggle="tooltip"><i class="icon-note"></i></span>
+              <% end %>
+            </span>
+          </div>
+        </div>
+        <br>
         <% end %>
       </div>
     </div>

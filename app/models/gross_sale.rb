@@ -4,6 +4,7 @@ class GrossSale < ApplicationRecord
   belongs_to :business_tax
 
   validates :amount, presence: true, numericality: { greater_than: MINIMUM_GROSS_SALE_AMOUNT }
+  validate :once_a_year
 
   before_save :set_tax
   def self.with_unpaid_tax
@@ -18,7 +19,10 @@ class GrossSale < ApplicationRecord
 
   private
   def set_tax
-    self.tax = BusinessTax.set_tax(self)
+    self.tax = Taxes::BusinessTax.set_tax(self)
+  end
+  def once_a_year
+    errors.add(:calendar_year, "Can only be once a year") if self.business.gross_sale_entered(self.calendar_year.year)
   end
 
 end

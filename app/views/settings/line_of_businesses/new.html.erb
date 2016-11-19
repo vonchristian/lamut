@@ -1,9 +1,9 @@
 <%=simple_form_for @line_of_business, url: :settings_line_of_businesses do |f| %>
   <%=f.error_notification %>
   <%=f.input :name %>
+  <%=f.input :line_of_business_classification_id, collection: LineOfBusinessClassification.all.map{|a| [a.name, a.id]}, as: :radio_buttons %>
   <%=f.simple_fields_for :mayors_permit_fee do |m| %>
     <%=m.input :amount %>
-
   <% end %>
   <%=f.submit %>
 <% end %>

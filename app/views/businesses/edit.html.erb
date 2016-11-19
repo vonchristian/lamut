@@ -46,9 +46,7 @@
 <br>
 <h4>Line of Business </h4>
 
-<%=f.simple_fields_for :business_activities do |l| %>
-  <%=l.input :line_of_business_id, collection: LineOfBusiness.all.map{|a| [a.name, a.id]} %>
-<% end %>
+  <%=f.input :line_of_business_ids, collection: LineOfBusiness.all.map{|a| [a.name, a.id]}, as: :check_boxes, label: false %>
 
 <%=f.input :business_classification_id, collection: BusinessClassification.all.map{|a| [a.name, a.id]}, as: :radio_buttons %>
 

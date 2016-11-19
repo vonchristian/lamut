@@ -35,6 +35,7 @@ gem 'mina-puma', :require => false
 gem "figaro"
 gem 'barby'
 gem 'prawn-print'
+gem "numbers_and_words"
 
 group :production do
   gem 'pg', '~> 0.18',  group: :development

@@ -73,7 +73,7 @@
   </div>
     <div class="col-md-6">
     <%= a.input :province_id, collection: Province.all.map{|a| [a.name, a.id] }, default: Province.first%>
-    <%= a.input :current, as: :boolean, :input_html => { :checked => true }, as: :hidden %>
+    <%= a.input :current, as: :boolean, :input_html => { :checked => true } %>
   </div>
 </div>
 

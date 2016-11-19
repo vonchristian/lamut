@@ -1,4 +1,4 @@
-classification_1 = LineOfBusinessClassification.find_by_name "manufacturers, importers or producers of any article of commerce of whatever kind or nature, including brewers, distillers, rectifiers and re-packers, and compounders of liquors, distilled spirits and/or wines and others"
+classification_1 = LineOfBusinessClassification.find_by_name "Manufacturers, importers or producers of any article of commerce of whatever kind or nature, including brewers, distillers, rectifiers and re-packers, and compounders of liquors, distilled spirits and/or wines and others"
 LineOfBusiness.create  line_of_business_classification_id: classification_1.id, name: "Brewers/Compounders, distillers of liquors, distilled spirits and/or wines", mayors_permit_fee_attributes: {:amount => 660}
 LineOfBusiness.create line_of_business_classification_id: classification_1.id, name: "Brewers of Fermented Liquors (Tuba, Basi,Tapuy, Bugnay)", mayors_permit_fee_attributes: {:amount => 660}
 LineOfBusiness.create line_of_business_classification_id: classification_1.id, name: "Importers of liquors, distilled spirits and/or wines", mayors_permit_fee_attributes: {:amount => 660}
