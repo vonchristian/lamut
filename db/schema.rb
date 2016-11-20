@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161119154120) do
+ActiveRecord::Schema.define(version: 20161120070945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,10 +127,11 @@ ActiveRecord::Schema.define(version: 20161119154120) do
     t.string   "type"
     t.string   "name"
     t.decimal  "amount"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "feeable_id"
     t.string   "feeable_type"
+    t.boolean  "default",      default: false
     t.index ["feeable_id"], name: "index_fees_on_feeable_id", using: :btree
     t.index ["feeable_type"], name: "index_fees_on_feeable_type", using: :btree
   end

@@ -37,8 +37,18 @@
         <span class="pull-right"><%=number_to_currency line_of_business.mayors_permit_fee_amount %></span>
       </div>
       </div>
+
         <hr>
       <% end %>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-1">
+          <h4 class="box-title"><b>TOTAL MAYORS PERMIT FEES</b></h4>
+        </div>
+        <div class="col-md-5">
+          <h4 class="box-title"> <span class="pull-right"><%=number_to_currency @business.mayors_permit_fees.total %></span></h4>
+        </div>
+      </div>
+      <br>
       <div class="row">
         <div class="col-md-6">
           <h4 class="box-title text-muted"><i class="icon-wallet"></i> Gross Sales</h4>
@@ -50,7 +60,18 @@
 
       </div>
     </div>
+
     <br>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-1">
+        <h4 class="box-title">TOTAL MAYORS PERMIT FEES </h4>
+      </div>
+      <div class="col-md-3">
+        <h4 class="box-title"> <span class="pull-right"><%=number_to_currency @business.mayors_permit_fees.total %></span></h4>
+      </div>
+      <div class="col-md-2">
+      </div>
+    </div>
        <% @business.gross_sales.each do |gross_sale| %>
        <div class="row">
          <div class="col-md-5 col-md-offset-1">
