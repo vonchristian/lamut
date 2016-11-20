@@ -177,3 +177,26 @@ LineOfBusiness.create line_of_business_classification_id: classification_7.id, n
 LineOfBusiness.create line_of_business_classification_id: classification_7.id, name: "Veterinary Clinic/Pet Shop", mayors_permit_fee_attributes: {:amount => 1320}
 LineOfBusiness.create line_of_business_classification_id: classification_7.id, name: "Watch Repair Shop", mayors_permit_fee_attributes: {:amount => 330}
 LineOfBusiness.create line_of_business_classification_id: classification_7.id, name: "Others(Services)", mayors_permit_fee_attributes: {:amount => 231}
+
+classification_8 = LineOfBusinessClassification.find_by_name "Recreational, Entertainment and Amusement Particulars"
+LineOfBusiness.create line_of_business_classification_id: classification_8.id, name: "Beerhouses(without karaoke/video)", mayors_permit_fee_attributes: {:amount => 660}
+LineOfBusiness.create line_of_business_classification_id: classification_8.id, name: "Billiard Hall/Pool", mayors_permit_fee_attributes: {:amount => 440}
+LineOfBusiness.create line_of_business_classification_id: classification_8.id, name: "Cinematographic Film/Video/Tape Owners/Lessors", mayors_permit_fee_attributes: {:amount => 330 }
+LineOfBusiness.create line_of_business_classification_id: classification_8.id, name: "Night Clubs, Sing-along Bars/Discos", mayors_permit_fee_attributes: {:amount => 1320 }
+LineOfBusiness.create line_of_business_classification_id: classification_8.id, name: "Resort Owners/Zoo Operators", mayors_permit_fee_attributes: {:amount => 1100 }
+LineOfBusiness.create line_of_business_classification_id: classification_8.id, name: "Video Games", mayors_permit_fee_attributes: {:amount => 1100 }
+LineOfBusiness.create line_of_business_classification_id: classification_8.id, name: "Videoke Machine Rentals/Unit", mayors_permit_fee_attributes: {:amount => 300 }
+
+classification_9 = LineOfBusinessClassification.find_by_name "Other Business Activities"
+LineOfBusiness.create line_of_business_classification_id: classification_9.id, name: "Banks", mayors_permit_fee_attributes: {:amount => 1320 }
+LineOfBusiness.create line_of_business_classification_id: classification_9.id, name: "Insurance/Surety", mayors_permit_fee_attributes: {:amount => 880 }
+LineOfBusiness.create line_of_business_classification_id: classification_9.id, name: "Micro lending from lending institution", mayors_permit_fee_attributes: {:amount => 2000 }
+LineOfBusiness.create line_of_business_classification_id: classification_9.id, name: "Money Shop", mayors_permit_fee_attributes: {:amount => 660 }
+LineOfBusiness.create line_of_business_classification_id: classification_9.id, name: "Pawn Shop", mayors_permit_fee_attributes: {:amount => 660 }
+LineOfBusiness.create line_of_business_classification_id: classification_9.id, name: "Private Individual Lending", mayors_permit_fee_attributes: {:amount => 1100 }
+LineOfBusiness.create line_of_business_classification_id: classification_9.id, name: "Underwriters/agents", mayors_permit_fee_attributes: {:amount => 440 }
+LineOfBusiness.create line_of_business_classification_id: classification_9.id, name: "Peddlers (Ambulant)", mayors_permit_fee_attributes: {:amount => 231 }
+LineOfBusiness.create line_of_business_classification_id: classification_9.id, name: "Peddlers (Motorized)", mayors_permit_fee_attributes: {:amount => 495 }
+LineOfBusiness.create line_of_business_classification_id: classification_9.id, name: "Permit to Advertise Business and Profession thru Billboards, Signs, Tarpaulins", mayors_permit_fee_attributes: {:amount => 500 }
+LineOfBusiness.create line_of_business_classification_id: classification_9.id, name: "Permit to transport large cattle", mayors_permit_fee_attributes: {:amount => 220 }
+LineOfBusiness.create line_of_business_classification_id: classification_9.id, name: "Others(Other Business Activities)", mayors_permit_fee_attributes: {:amount => 231 }
