@@ -47,7 +47,7 @@ BusinessTax.create(business_classification_id: classification_2.id, minimum_amou
 BusinessTax.create(business_classification_id: classification_2.id, minimum_amount: 1_000_000, maximum_amount: 1_999_999.99, tax_amount: 11000)
 
 
-classification_3 = BusinessClassification.find_by_name('Contractors and other independent contractors')
+classification_3 = BusinessClassification.find_by_name('Contractors and Other Independent Contractors')
 
 BusinessTax.create(business_classification_id: classification_3.id, minimum_amount: 0.1, maximum_amount: 4_999.99, tax_amount: 30.25)
 BusinessTax.create(business_classification_id: classification_3.id, minimum_amount: 5_000, maximum_amount: 9_999.99, tax_amount: 67.65)

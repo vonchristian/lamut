@@ -2,6 +2,7 @@ module Businesses
   class BusinessActivitiesController < ApplicationController
     def new
       @business = Business.find(params[:business_id])
+      @line_of_businesses = LineOfBusiness.text_search(params[:search])
     end
     def create
       @business = Business.find(params[:business_id])

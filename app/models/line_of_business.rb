@@ -1,4 +1,6 @@
 class LineOfBusiness < ApplicationRecord
+  include PgSearch
+  pg_search_scope :text_search, :against => [:name]
 
   has_one :mayors_permit_fee, as: :feeable, class_name: "Fees::MayorsPermitFee"
 

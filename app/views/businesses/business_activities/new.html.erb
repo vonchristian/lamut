@@ -40,7 +40,41 @@
         </div>
           <div class="col-md-6 col-md-offset-1">
             <h4 class="box-title"> Business Activities </h4>
+            <%=form_tag new_business_business_activity_path(@business), method: :get, class: "search-form" do %>
+              <div class="input-group">
+                <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search..." %>
+                <span class="input-group-btn">
+                  <%= button_tag(type: 'submit', id: "search-btn", class: "btn btn-flat") do %>
+                    <i class="fa fa-search"></i>
+                  <% end %>
+                </span>
+              </div>
+            <% end %>
             <hr>
+            <% if params[:search].present? %>
+             <% @line_of_businesses.each do |line_of_business| %>
+               <div class="row">
+                 <div class="col-md-6 col-md-offset-1">
+                   <span class="text-muted"> <%=line_of_business.name %></span>
+                 </div>
+                 <div class="col-md-2">
+                   <span class="pull-right text-muted"><%=number_to_currency line_of_business.mayors_permit_fee_amount %></span>
+                 </div>
+                 <div class="col-md-3">
+                   <%=simple_form_for [@business, BusinessActivity.new], url: :business_business_activities do |f| %>
+                   <%=f.error_notification %>
+                   <%=f.input :line_of_business_id, input_html: {value: line_of_business.id }, label: false, as: :hidden %>
+                   <%if  @business.line_of_businesses.include?(line_of_business) %>
+                   <btn class="fa fa-toggle-on text-primary" title="Already added" data-toggle="tooltip"></btn>
+                   <% else %>
+                   <%=f.submit "Add", class: "btn btn-default btn-xs" %>
+                   <% end %>
+                   <% end %>
+                 </div>
+               </div>
+               <hr>
+             <% end %>
+             <% else %>
             <% LineOfBusinessClassification.all.each do |line_of_business_classification| %>
               <div class="row">
                 <div class="col-md-10">
@@ -70,6 +104,7 @@
                     </div>
                     <hr>
                   <% end %>
+            <% end %>
             <% end %>
 
         </div>
