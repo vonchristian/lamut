@@ -1,1 +1,0 @@
-json.array! @mode_of_payments, partial: 'mode_of_payments/mode_of_payment', as: :mode_of_payment

@@ -1,4 +1,26 @@
 <div class="row">
+<div class="col-md-12">
+  <div class="nav-tabs-custom">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#businesses" data-toggle="tab">Account</a></li>
+      <li><a href="#timeline" data-toggle="tab">Real Properties</a></li>
+      <li><a href="#fees" data-toggle="tab"><i class="fa fa-rub"> </i> &nbsp; Fees</a></li>
+      <li><a href="#settings" data-toggle="tab">Activity Logs</a></li>
+      <li><a href="#settings" data-toggle="tab">Settings</a></li>
+
+
+    </ul>
+    <div class="tab-content">
+     <%=render 'settings/partials/fees' %>
+    </div>
+    <!-- /.tab-content -->
+  </div>
+  <!-- /.nav-tabs-custom -->
+</div>
+<!-- /.col -->
+</div>
+</div>
+<div class="row">
   <div class="col-md-4">
     <div class="box box-default">
       <div class="box-header with-border">
@@ -120,38 +142,15 @@
 </div>
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-4">
     <div class="box box-default">
       <div class="box-header with-border">
-        <i class="icon-layers"></i>  Fee Settings
-        <span class="pull-right">
-          <%=link_to new_settings_fee_path do %>
-            <btn class="btn btn-danger btn-flat"><i class="icon-plus"></i> New Fee </btn>
-          <% end %>
-        </span>
+        <h4 class="box-title"> Mode of Payment Settings </h4>
+        <%=link_to new_settings_mode_of_payment_path do %>
+        <span class="btn btn-danger"><i class="fa fa-rub"></i> New Mode of Payment </span>
+        <% end %>
       </div>
       <div class="box-body">
-        <% Fee.all.order(:name).each do |fee| %>
-        <div class="row">
-          <div class="col-md-4">
-            <p class="text-muted"><%= fee.name %></p>
-          </div>
-          <div class="col-md-2">
-            <small><%=fee.type.gsub!("Fees::", "").try(:titleize) %></small>
-          </div>
-          <div class="col-md-2">
-            <%=number_to_currency fee.amount %>
-          </div>
-          <div class="col-md-2">
-            <span class="pull-right">
-              <%#=link_to edit_settings_business_classification_path(business_classification) do %>
-                <span title="Edit Business Classification" data-toggle="tooltip"><i class="icon-note"></i></span>
-              <%# end %>
-            </span>
-          </div>
-        </div>
-        <br>
-        <% end %>
       </div>
     </div>
   </div>

@@ -1,9 +1,10 @@
-<%= simple_form_for(@mode_of_payment) do |f| %>
+<%= simple_form_for @mode_of_payment, url: :settings_mode_of_payments do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :name %>
   </div>
+    <%=f.input :recurrence, as: :string %>
 
   <div class="form-actions">
     <%= f.button :submit %>

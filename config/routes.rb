@@ -33,8 +33,7 @@ root :to => 'accounting/accounts#index', :constraints => lambda { |request| requ
     resources :business_classifications, only: [:new, :create, :edit, :update]
     resources :employees, only: [:new, :create, :show]
     resources :fees, only: [:new, :create, :index]
-
-
+    resources :mode_of_payments, only: [:new, :create, :edit, :update]
   end
 
 resources :accounting, only:[:index]
