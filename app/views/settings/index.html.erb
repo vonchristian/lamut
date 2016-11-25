@@ -1,3 +1,23 @@
+
+    <div class="row">
+        <div class="col-md-3">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a href="#"><i class="fa fa-home fa-fw"></i>Home</a></li>
+                <li><a href="#fees" data-toggle="tab"><i class="fa fa-list-alt fa-fw"></i>Widgets</a></li>
+                <li><a href="/settings/employees"><i class="icon-people fa-fw"></i> &nbsp; Employees</a></li>
+                <li><a href="http://www.jquery2dotnet.com"><i class="fa fa-bar-chart-o fa-fw"></i>Mayors Permit Fees</a></li>
+                <li><a href="http://www.jquery2dotnet.com"><i class="fa fa-table fa-fw"></i>Table</a></li>
+                <li><a href="http://www.jquery2dotnet.com"><i class="fa fa-tasks fa-fw"></i>Forms</a></li>
+                <li><a href="http://www.jquery2dotnet.com"><i class="fa fa-calendar fa-fw"></i>Calender</a></li>
+                <li><a href="http://www.jquery2dotnet.com"><i class="fa fa-book fa-fw"></i>Library</a></li>
+                <li><a href="http://www.jquery2dotnet.com"><i class="fa fa-pencil fa-fw"></i>Applications</a></li>
+                <li><a href="http://www.jquery2dotnet.com"><i class="fa fa-cogs fa-fw"></i>Settings</a></li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+        </div>
+    </div>
+
 <div class="row">
 <div class="col-md-12">
   <div class="nav-tabs-custom">
@@ -11,7 +31,6 @@
 
     </ul>
     <div class="tab-content">
-     <%=render 'settings/partials/fees' %>
     </div>
     <!-- /.tab-content -->
   </div>
@@ -33,33 +52,6 @@
       <div class="box-body">
         <% Barangay.all.each do |barangay| %>
           <p><%=barangay.name %></p>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="box box-solid">
-      <div class="box-body">
-        <i class="icon-people"></i> Employees
-        <span class="pull-right">
-          <%=link_to new_settings_employee_path do %>
-            <btn class="btn btn-danger btn-flat"><i class="fa fa-user-plus"></i> New Employee </btn>
-          <% end %>
-        </span>
-        <hr>
-        <% User.all.each do |user| %>
-        <%=link_to settings_employee_path(user) do  %>
-          <div class="row">
-            <div class="col-md-3">
-              <%=image_tag(user.photo.url(:small), class: "img-square") %>
-            </div>
-            <div class="col-md-9">
-              <strong><%=user.first_name_and_last_name.try(:titleize) %></strong>
-                <small class="help-block"><%=user.role.try(:titleize).try(:upcase) %></small>
-            </div>
-          </div>
-          <br>
-          <% end %>
         <% end %>
       </div>
     </div>

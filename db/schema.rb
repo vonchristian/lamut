@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161120070945) do
+ActiveRecord::Schema.define(version: 20161125092930) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,6 +160,20 @@ ActiveRecord::Schema.define(version: 20161120070945) do
     t.index ["line_of_business_classification_id"], name: "index_line_of_businesses_on_line_of_business_classification_id", using: :btree
   end
 
+  create_table "mayors", force: :cascade do |t|
+    t.integer  "municipality_id"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.index ["municipality_id"], name: "index_mayors_on_municipality_id", using: :btree
+  end
+
   create_table "mode_of_payments", force: :cascade do |t|
     t.string   "name"
     t.integer  "recurrence"
@@ -274,6 +288,7 @@ ActiveRecord::Schema.define(version: 20161120070945) do
   add_foreign_key "businesses", "taxpayers"
   add_foreign_key "gross_sales", "businesses"
   add_foreign_key "line_of_businesses", "line_of_business_classifications"
+  add_foreign_key "mayors", "municipalities"
   add_foreign_key "municipalities", "provinces"
   add_foreign_key "retirements", "businesses"
   add_foreign_key "tins", "taxpayers"

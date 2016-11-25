@@ -1,0 +1,7 @@
+<%=simple_form_for [@municipality, @mayor], url: :settings_municipality_mayors do |f| %>
+  <%=f.error_notification %>
+  <%=f.input :first_name %>
+  <%=f.input :middle_name %>
+  <%=f.input :last_name %>
+  <%=f.submit %>
+<% end %>

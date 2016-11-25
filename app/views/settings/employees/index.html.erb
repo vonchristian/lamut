@@ -1,0 +1,30 @@
+<div class="row">
+<%=render '/settings/partials/sidebar' %>
+<div class="col-md-9">
+    <div class="box box-solid">
+      <div class="box-body">
+        <i class="icon-people"></i> Employees
+        <span class="pull-right">
+          <%=link_to new_settings_employee_path do %>
+            <btn class="btn btn-danger btn-flat"><i class="fa fa-user-plus"></i> New Employee </btn>
+          <% end %>
+        </span>
+        <hr>
+        <% User.all.each do |user| %>
+        <%=link_to settings_employee_path(user) do  %>
+          <div class="row">
+            <div class="col-md-3">
+              <%=image_tag(user.photo.url(:small), class: "img-square") %>
+            </div>
+            <div class="col-md-9">
+              <strong><%=user.first_name_and_last_name.try(:titleize) %></strong>
+                <small class="help-block"><%=user.role.try(:titleize).try(:upcase) %></small>
+            </div>
+          </div>
+          <br>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+</div>
+</div>

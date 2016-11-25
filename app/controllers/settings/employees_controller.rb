@@ -1,5 +1,8 @@
 module Settings
   class EmployeesController < ApplicationController
+    def index
+      @employees = User.all
+    end 
     def new
       @user = User.new
       # authorize [:bplo_section, :settings, @user]

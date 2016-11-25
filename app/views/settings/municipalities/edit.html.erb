@@ -1,0 +1,6 @@
+<%=simple_form_for @municipality, url: :settings_municipality do |f| %>
+  <%=f.error_notification %>
+  <%=f.input :name %>
+  <%=f.input :logo %>
+  <%=f.submit %>
+<% end %>
