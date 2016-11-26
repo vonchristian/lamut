@@ -7,25 +7,50 @@
       </div>
       <div class="box-body">
         <div class="row">
-          <div class="col-md-5">
-            <center><%=image_tag @municipality.logo.url(:thumb) %></center><br>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-6">
+            <%=image_tag @municipality.logo.url(:thumb) %>
+          </div>
+          <div class="col-md-6">
             Municipality of <%=@municipality.name %>
             <%=link_to 'Update', edit_settings_municipality_path(@municipality) %>
-            <h4 class="box-title"> Mayor
-            <%=link_to new_settings_municipality_mayor_path(@municipality) do %>
-              <span class="btn btn-default pull-right" title="Add Mayor Details" data-toggle="tooltip"><i class="fa fa-user-plus"></i></span>
-            <% end %>
-            </h4>
-            <%=@municipality.mayor_full_name %>
           </div>
-          <div class="col-md-5">
-            <h4>Barangays </h4>
+        </div>
+        <hr>
+
+            <div class="row">
+              <div class="col-md-3">
+                <%=image_tag @municipality.mayor.photo.url(:thumb), class: "img-circle" %>
+              </div>
+              <div class="col-md-9">
+                <h4 class="box-title"> <%=@municipality.mayor_full_name.try(:upcase) %></h4>
+                <p class="text-muted"> Municipal Mayor </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 border-left col-md-offset-1">
+            <h4><span class="badge"><%=Barangay.count %></span> Barangays  </h4>
             <hr>
             <% Barangay.all.each do |barangay| %>
               <p><%=barangay.name %></p>
             <% end %>
           </div>
         </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-default">
+        <div class="box-header with-border">
+          <h4 class="box-title"> Mode of Payment Settings </h4>
+          <%=link_to new_settings_mode_of_payment_path do %>
+          <span class="btn btn-danger"><i class="fa fa-rub"></i> New Mode of Payment </span>
+          <% end %>
+        </div>
+        <div class="box-body">
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -37,7 +37,7 @@
                 <small class="help-block">
                   <i class="fa fa-phone"></i> &nbsp; <%=taxpayer.mobile_number %> &nbsp;
                   <i class="icon-speech"></i> &nbsp; <%=taxpayer.email %> &nbsp;
-                  <i class="icon-location-pin"></i> &nbsp; <%=taxpayer.current_address %>
+                  <i class="icon-location-pin"></i> &nbsp; <%=taxpayer.current_address.try(:address_details) %>
                 </small>
               </div>
               <div class="col-md-1">

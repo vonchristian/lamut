@@ -25,14 +25,13 @@ root :to => 'accounting/accounts#index', :constraints => lambda { |request| requ
     resources :gross_sales, only: [:new, :create], module: :businesses
     resources :business_classifications, only: [:edit, :update], module: :businesses
   end
-  resources :settings, only: [:index]
   namespace :settings do
     resources :accounts, only: [:index]
     resources :municipalities, only: [:edit, :update] do
       resources :mayors, only: [:new, :create]
     end
     resources :barangays, only: [:new, :create]
-    resources :line_of_businesses, only: [:new, :create]
+    resources :line_of_businesses, only: [:new, :create, :index]
     resources :line_of_business_classifications, only: [:new, :create]
     resources :business_classifications, only: [:new, :create, :edit, :update]
     resources :employees, only: [:new, :create, :show, :index]

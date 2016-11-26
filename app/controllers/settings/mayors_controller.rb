@@ -15,7 +15,7 @@ module Settings
     end
     private
     def mayor_params
-      params.require(:mayor).permit(:first_name, :middle_name, :last_name)
+      params.require(:mayor).permit(:first_name, :middle_name, :last_name, :photo)
     end
   end
-end 
+end
