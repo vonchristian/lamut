@@ -22,6 +22,8 @@ class Business < ApplicationRecord
 
   delegate :name, to: :taxpayer, prefix: true
   delegate :name, to: :business_classification, prefix: true, allow_nil: true
+  delegate :retailer?, to: :business_classification, allow_nil: true
+
   delegate :retired?, to: :retirement
   delegate :annually?, :semi_annually?, :quarterly?, to: :mode_of_payment, allow_nil: true
 
