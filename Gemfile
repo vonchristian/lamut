@@ -15,11 +15,11 @@ gem 'bootstrap-sass'
 gem 'simple-line-icons-rails'
 gem "font-awesome-rails"
 gem "animate-rails"
-gem 'friendly_id', '~> 5.1.0'
+gem 'friendly_id'
 gem 'kaminari'
 gem 'pg_search'
 gem 'devise'
-gem "paperclip", "~> 5.0.0"
+gem "paperclip"
 gem 'bootstrap-datepicker-rails'
 gem 'pundit'
 gem "select2-rails"
@@ -35,13 +35,13 @@ gem 'prawn-print'
 gem "numbers_and_words"
 
 group :production do
-  gem 'pg', '~> 0.18',  group: :development
+  gem 'pg',  group: :development
   gem 'rails_12factor'
   gem 'puma', group: :development
 end
 group :development, :test do
   gem 'byebug', platform: :mri
-  gem "rspec-rails", "3.5.0"
+  gem "rspec-rails"
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'faker'
@@ -50,13 +50,13 @@ end
 group :development do
   # gem "bullet"
   gem 'meta_request'
-  gem 'listen', '~> 3.0.5'
+  gem 'listen'
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen'
 end
 
 group :test do
-  gem 'shoulda-matchers', '~> 3.1'
+  gem 'shoulda-matchers'
   gem 'database_cleaner'
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
