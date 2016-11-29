@@ -1,0 +1,2 @@
+class RequiredDocument < ApplicationRecord
+end

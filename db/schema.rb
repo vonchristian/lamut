@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125092930) do
+ActiveRecord::Schema.define(version: 20161129045146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -207,6 +207,18 @@ ActiveRecord::Schema.define(version: 20161125092930) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "required_documents", force: :cascade do |t|
+    t.string   "type"
+    t.date     "date_issued"
+    t.date     "expiry_date"
+    t.string   "office_or_agency"
+    t.string   "reference_number"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "taxpayer_id"
+    t.index ["taxpayer_id"], name: "index_required_documents_on_taxpayer_id", using: :btree
   end
 
   create_table "retirements", force: :cascade do |t|
