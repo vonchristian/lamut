@@ -10,7 +10,11 @@ end
 
 
 def site_name
-    "BPLS | TINOC"
+  if current_user.health_officer?
+    "Health Unit"
+  else 
+    "BPLS"
+  end
   end
 
   def site_url

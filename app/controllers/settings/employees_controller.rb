@@ -2,7 +2,7 @@ module Settings
   class EmployeesController < ApplicationController
     def index
       @employees = User.all
-    end 
+    end
     def new
       @user = User.new
       # authorize [:bplo_section, :settings, @user]
@@ -11,7 +11,7 @@ module Settings
     def create
       @user = User.create(user_params)
       if @user.save
-        redirect_to settings_url, notice: "Employee saved successfully."
+        redirect_to settings_employees_url, notice: "Employee saved successfully."
       else
         render :new
       end
@@ -26,7 +26,7 @@ module Settings
       @user = User.find(params[:id])
       @user.update(user_params)
       if @user.save
-        redirect_to settings_url, notice: 'Employee updated successfully.'
+        redirect_to settings_employees_url, notice: 'Employee updated successfully.'
       else
         render :edit
       end

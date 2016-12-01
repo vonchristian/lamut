@@ -5,6 +5,10 @@ RSpec.describe Taxpayer, type: :model do
     it { is_expected.to have_one :tin }
     it { is_expected.to have_many :addresses }
     it { is_expected.to have_many :businesses }
+    it { is_expected.to have_many :health_certificates }
+    it { is_expected.to have_many :sanitary_permits }
+
+
   end
 
   describe "photo_attachment" do

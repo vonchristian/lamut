@@ -8,6 +8,9 @@ class Taxpayer < ApplicationRecord
   has_one :tin
   has_many :addresses, as: :addressable
   has_many :businesses
+  has_many :health_certificates, class_name: "HealthUnitSection::HealthCertificate"
+  has_many :sanitary_permits, class_name: "HealthUnitSection::SanitaryPermit"
+
   has_attached_file :photo, styles: { medium: "295x295>",
                                       thumb: "100x100#",
                                       small: "50x50#"},

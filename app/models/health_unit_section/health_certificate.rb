@@ -1,4 +1,4 @@
-module RequiredDocuments
+module HealthUnitSection
   class HealthCertificate < RequiredDocument
   end
-end 
+end

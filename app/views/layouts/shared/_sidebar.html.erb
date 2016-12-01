@@ -34,6 +34,10 @@
           <li><a href="/settings/accounts"><i class="icon-settings"></i> <span> &nbsp; &nbsp;  Setings</span></a></li>
         <% end %>
         <li><a href="/businesses"><i class="icon-folder"></i> <span> &nbsp; &nbsp;  Reports</span></a></li>
+        <% if current_user.health_officer? %>
+        <li><a href="/health_unit_section/health_certificates"><i class="icon-docs"></i> <span> &nbsp; &nbsp;  Health Certifications</span></a></li>
+          <li><a href="/health_unit_section/sanitary_permits"><i class="icon-notebook"></i> <span> &nbsp; &nbsp;  Sanitary Permits</span></a></li>
+          <% end %>
 
 
     </section>

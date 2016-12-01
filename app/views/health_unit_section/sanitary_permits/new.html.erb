@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-default">
+      <div class="box-header">
+        <%=@taxpayer.full_name %>
+      </div>
+      <div class="box-body">
+        <%=simple_form_for [@taxpayer, @sanitary_permit], url: :health_unit_section_taxpayer_sanitary_permits do |f| %>
+          <%=f.error_notification %>
+          <%=f.input :date_issued %>
+          <%=f.input :expiry_date %>
+          <%=f.input :office_or_agency, input_html: { value: "Rural Health Unit of Lamut, Ifugao" } %>
+        <div class="modal-footer">
+          <%=f.submit "Issued Health Certificate", class: "btn btn-primary btn-flat" %>
+        </div>
+
+        <% end %>

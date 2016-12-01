@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161129045146) do
+ActiveRecord::Schema.define(version: 20161129114102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -230,6 +230,19 @@ ActiveRecord::Schema.define(version: 20161129045146) do
     t.index ["business_id"], name: "index_retirements_on_business_id", using: :btree
   end
 
+  create_table "signatories", force: :cascade do |t|
+    t.integer  "documentable_id"
+    t.string   "documentable_type"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.string   "position"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["documentable_id"], name: "index_signatories_on_documentable_id", using: :btree
+    t.index ["documentable_type"], name: "index_signatories_on_documentable_type", using: :btree
+  end
+
   create_table "taxes", force: :cascade do |t|
     t.integer  "taxable_id"
     t.string   "taxable_type"
@@ -290,8 +303,10 @@ ActiveRecord::Schema.define(version: 20161129045146) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.string   "mobile"
+    t.string   "type"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["type"], name: "index_users_on_type", using: :btree
   end
 
   add_foreign_key "barangays", "municipalities"

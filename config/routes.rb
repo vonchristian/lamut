@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 root :to => 'dashboards#bplo', :constraints => lambda { |request| request.env['warden'].user.role == 'bplo_officer' if request.env['warden'].user }, as: :bplo_root
 root :to => 'dashboards#collection_clerk', :constraints => lambda { |request| request.env['warden'].user.role == 'collection_clerk' if request.env['warden'].user }, as: :collection_clerk_root
 root :to => 'accounting/accounts#index', :constraints => lambda { |request| request.env['warden'].user.role == 'bookkeeper' if request.env['warden'].user }, as: :bookkeeper_root
+root :to => 'health_unit#index', :constraints => lambda { |request| request.env['warden'].user.role == 'health_officer' if request.env['warden'].user }, as: :health_unit_root
+
   resources :addresses, only: [:edit, :update]
   resources :business_activities, only: [:destroy], module: :businesses
 
@@ -46,5 +48,22 @@ namespace :accounting do
       match "/scope_to_date" => "entries#scope_to_date", as: :scope_to_date, via: [:get], on: :collection
     end
 end
+namespace :health_unit_section do
+  resources :taxpayers, only: [:index, :show, :new, :create] do
+    resources :health_certificates, only: [:new, :create]
+    resources :sanitary_permits, only: [:new, :create]
+
+  end
+  resources :health_certificates, only: [:index]
+  resources :sanitary_permits, only: [:index]
+end
+
+namespace :engineering_section do
+  resources :taxpayers, only: [:index, :show, :new, :create] do
+    resources :engineering_clearances, only: [:new, :create]
+  end
+  resources :engineering_clearances, only: [:index]
+end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
