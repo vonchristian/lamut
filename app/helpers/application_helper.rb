@@ -10,9 +10,9 @@ end
 
 
 def site_name
-  if current_user.health_officer?
+  if current_user && current_user.health_officer?
     "Health Unit"
-  else 
+  else
     "BPLS"
   end
   end

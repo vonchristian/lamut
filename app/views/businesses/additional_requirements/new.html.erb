@@ -1,0 +1,19 @@
+<% RequiredDocument.not_default.all.each do |document| %>
+
+<%=document.name %>
+
+
+<%=simple_form_for [@business, @additional_requirement], url: :business_additional_requirements do |f| %>
+<%=f.error_notification %>
+<%= f.input :required_document_id, input_html: {value: document.id }, as: :hidden %>
+<% unless @business.additional_requirement_addded_already?(document) %>
+<%=f.submit "Add", class: "btn btn-primary btn-flat" %>
+<% else %>
+<span class="btn btn-icon">Added</btn>
+<% end %>
+<% end %>
+
+<% end %>
+<%=link_to business_path(@business) do %>
+<span class="icon-arrow-left fa-2x"></span>
+<% end %>

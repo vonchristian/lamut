@@ -1,0 +1,17 @@
+<div class="row">
+    <%=render "/settings/partials/sidebar" %>
+    <div class="col-md-9">
+      <div class="box box-danger">
+        <div class="box-header with-border">
+          <h4 class="box-title"> Required Documents
+            <span class="pull-right">
+              <%=link_to "New Document", new_settings_required_document_path, class: "btn btn-danger" %>
+            </span>
+            <h4>
+        </div>
+        <div class="box-body">
+          <% @required_documents.each do |document| %>
+          <p class="category"> <%=document.name %>
+            <%=link_to "Edit", edit_settings_required_document_path(document) %>
+          <% end %>
+  </div>

@@ -17,6 +17,7 @@ class Business < ApplicationRecord
   has_many :line_of_businesses, through: :business_activities
   has_many :mayors_permit_fees, through: :line_of_businesses
   has_many :gross_sales
+  has_many :business_requirements
 
   accepts_nested_attributes_for :addresses, :business_activities
 
@@ -45,6 +46,9 @@ class Business < ApplicationRecord
 
   def gross_sale_entered(year)
     gross_sales.each.map{|a| a.calendar_year.year}.include?(year)
+  end
+  def business_requirement_addded_already?(business_requirement)
+    business_requirements.pluck(:required_document_id).include?(business_requirement.id)
   end
 
 end

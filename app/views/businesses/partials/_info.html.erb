@@ -82,6 +82,19 @@
     </div>
     <div class="col-md-4 col-md-offset-1">
       <h4 class="box-title"> <i class="icon-bell"></i> Notifications </h4>
+      <hr />
+      <h4 class="box-title"> <i class="icon-list"></i> Checklist </h4>
+  
+      <% @business.business_requirements.each do |document| %>
+      <ul class="list-unstyled">
+      <li><%=document.required_document_name %><br>
+        <small class="text-muted"><%=document.required_document_department_name %></small>
+      </li>
+      <br />
+    </ul>
+      <% end %>
+      <%=link_to "Add Additional Requirements", new_business_additional_requirement_path(@business), class: "btn btn-primary btn-xs btn-flat" %>
+
     </div>
   </div>
 

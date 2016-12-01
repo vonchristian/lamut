@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161129114102) do
+ActiveRecord::Schema.define(version: 20161201081100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 20161129114102) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.index ["code"], name: "index_accounts_on_code", using: :btree
+  end
+
+  create_table "additional_requirements", force: :cascade do |t|
+    t.integer  "business_id"
+    t.integer  "required_document_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["business_id"], name: "index_additional_requirements_on_business_id", using: :btree
+    t.index ["required_document_id"], name: "index_additional_requirements_on_required_document_id", using: :btree
   end
 
   create_table "addresses", force: :cascade do |t|
@@ -82,6 +91,15 @@ ActiveRecord::Schema.define(version: 20161129114102) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "business_requirements", force: :cascade do |t|
+    t.integer  "required_document_id"
+    t.integer  "business_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["business_id"], name: "index_business_requirements_on_business_id", using: :btree
+    t.index ["required_document_id"], name: "index_business_requirements_on_required_document_id", using: :btree
+  end
+
   create_table "business_taxes", force: :cascade do |t|
     t.decimal  "minimum_amount"
     t.decimal  "maximum_amount"
@@ -107,6 +125,12 @@ ActiveRecord::Schema.define(version: 20161129114102) do
     t.integer  "mode_of_payment_id"
     t.index ["mode_of_payment_id"], name: "index_businesses_on_mode_of_payment_id", using: :btree
     t.index ["taxpayer_id"], name: "index_businesses_on_taxpayer_id", using: :btree
+  end
+
+  create_table "departments", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "entries", force: :cascade do |t|
@@ -144,6 +168,20 @@ ActiveRecord::Schema.define(version: 20161129114102) do
     t.datetime "updated_at",    null: false
     t.decimal  "tax"
     t.index ["business_id"], name: "index_gross_sales_on_business_id", using: :btree
+  end
+
+  create_table "issuances", force: :cascade do |t|
+    t.integer  "required_document_id"
+    t.date     "date_issued"
+    t.date     "expiry_date"
+    t.string   "reference_number"
+    t.integer  "recipient_id"
+    t.string   "recipient_type"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["recipient_id"], name: "index_issuances_on_recipient_id", using: :btree
+    t.index ["recipient_type"], name: "index_issuances_on_recipient_type", using: :btree
+    t.index ["required_document_id"], name: "index_issuances_on_required_document_id", using: :btree
   end
 
   create_table "line_of_business_classifications", force: :cascade do |t|
@@ -210,15 +248,27 @@ ActiveRecord::Schema.define(version: 20161129114102) do
   end
 
   create_table "required_documents", force: :cascade do |t|
-    t.string   "type"
+    t.string   "reference_number"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "taxpayer_id"
+    t.boolean  "default",          default: false
+    t.string   "name"
+    t.integer  "department_id"
+    t.index ["department_id"], name: "index_required_documents_on_department_id", using: :btree
+    t.index ["taxpayer_id"], name: "index_required_documents_on_taxpayer_id", using: :btree
+  end
+
+  create_table "requirements", force: :cascade do |t|
+    t.integer  "business_id"
+    t.integer  "required_document_id"
+    t.string   "reference_number"
     t.date     "date_issued"
     t.date     "expiry_date"
-    t.string   "office_or_agency"
-    t.string   "reference_number"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "taxpayer_id"
-    t.index ["taxpayer_id"], name: "index_required_documents_on_taxpayer_id", using: :btree
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["business_id"], name: "index_requirements_on_business_id", using: :btree
+    t.index ["required_document_id"], name: "index_requirements_on_required_document_id", using: :btree
   end
 
   create_table "retirements", force: :cascade do |t|
@@ -304,19 +354,30 @@ ActiveRecord::Schema.define(version: 20161129114102) do
     t.datetime "photo_updated_at"
     t.string   "mobile"
     t.string   "type"
+    t.integer  "department_id"
+    t.index ["department_id"], name: "index_users_on_department_id", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["type"], name: "index_users_on_type", using: :btree
   end
 
+  add_foreign_key "additional_requirements", "businesses"
+  add_foreign_key "additional_requirements", "required_documents"
   add_foreign_key "barangays", "municipalities"
   add_foreign_key "business_activities", "businesses"
   add_foreign_key "business_activities", "line_of_businesses"
+  add_foreign_key "business_requirements", "businesses"
+  add_foreign_key "business_requirements", "required_documents"
   add_foreign_key "businesses", "taxpayers"
   add_foreign_key "gross_sales", "businesses"
+  add_foreign_key "issuances", "required_documents"
   add_foreign_key "line_of_businesses", "line_of_business_classifications"
   add_foreign_key "mayors", "municipalities"
   add_foreign_key "municipalities", "provinces"
+  add_foreign_key "required_documents", "departments"
+  add_foreign_key "requirements", "businesses"
+  add_foreign_key "requirements", "required_documents"
   add_foreign_key "retirements", "businesses"
   add_foreign_key "tins", "taxpayers"
+  add_foreign_key "users", "departments"
 end

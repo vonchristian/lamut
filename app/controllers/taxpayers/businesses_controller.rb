@@ -11,6 +11,7 @@ module Taxpayers
       @business = @taxpayer.businesses.create(business_params)
       if @business.save
         redirect_to @business, notice: "Business saved successfully."
+        BusinessRequirement.set_default_requirements(@business)
       else
         render :new
       end

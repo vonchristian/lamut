@@ -26,12 +26,14 @@ root :to => 'health_unit#index', :constraints => lambda { |request| request.env[
     resource :retirement, only: [:new, :create], module: :businesses
     resources :gross_sales, only: [:new, :create], module: :businesses
     resources :business_classifications, only: [:edit, :update], module: :businesses
+    resources :additional_requirements, only: [:new, :create], module: :businesses
   end
   namespace :settings do
     resources :accounts, only: [:index]
     resources :municipalities, only: [:edit, :update] do
       resources :mayors, only: [:new, :create]
     end
+
     resources :barangays, only: [:new, :create]
     resources :line_of_businesses, only: [:new, :create, :index]
     resources :line_of_business_classifications, only: [:new, :create]
@@ -39,6 +41,9 @@ root :to => 'health_unit#index', :constraints => lambda { |request| request.env[
     resources :employees, only: [:new, :create, :show, :index]
     resources :fees, only: [:new, :create, :index]
     resources :mode_of_payments, only: [:new, :create, :edit, :update]
+    resources :required_documents, only: [:new, :create, :edit, :update, :index]
+    resources :departments, only: [:new, :create, :index]
+
   end
 
 resources :accounting, only:[:index]
@@ -64,6 +69,7 @@ namespace :engineering_section do
   end
   resources :engineering_clearances, only: [:index]
 end
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
