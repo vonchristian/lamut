@@ -16,4 +16,9 @@ RSpec.describe User, type: :model do
 
     expect(user.name).to eql("Von Christian Halip")
   end
+
+  describe "photo_attachment" do
+    it { should have_attached_file(:photo) }
+    it { should validate_attachment_content_type(:photo).allowing('image/png', 'image/gif').rejecting('text/plain', 'text/xml') }
+  end
 end
