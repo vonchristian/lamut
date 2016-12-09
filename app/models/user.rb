@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  enum role: [:collection_clerk, :bplo_officer, :sanitary_officer,  :municipal_engineer, :municipal_mayor, :mayors_staff, :fire_officer, :health_officer]
+  enum role: [:collection_clerk, :bplo_officer, :sanitary_officer,  :municipal_engineer, :municipal_mayor, :mayors_staff, :fire_officer, :health_officer, :police_officer]
 
   belongs_to :department
 

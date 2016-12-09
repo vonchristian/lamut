@@ -23,6 +23,7 @@
             <%=f.input :role, collection: User.roles.keys.to_a.map{|a| [a.titleize, a] }, as: :radio_buttons %>
             <%=f.input :password %>
             <%=f.input :password_confirmation %>
+            <%=f.input :department_id, collection: Department.all.map{|a| [a.name.try(:titleize), a.id]} %>
             <div class="modal-footer">
               <%=f.submit "Save Employee", class: "btn btn-danger btn-flat" %>
             </div>
