@@ -1,5 +1,5 @@
 class RequiredDocument < ApplicationRecord
-  belongs_to :signatory
+  belongs_to :signatory, class_name: "HumanResources::Employee", foreign_key: "signatory_id"
   belongs_to :department
   has_many :issuances
 
