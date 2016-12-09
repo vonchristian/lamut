@@ -25,15 +25,6 @@ ActiveRecord::Schema.define(version: 20161201081100) do
     t.index ["code"], name: "index_accounts_on_code", using: :btree
   end
 
-  create_table "additional_requirements", force: :cascade do |t|
-    t.integer  "business_id"
-    t.integer  "required_document_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.index ["business_id"], name: "index_additional_requirements_on_business_id", using: :btree
-    t.index ["required_document_id"], name: "index_additional_requirements_on_required_document_id", using: :btree
-  end
-
   create_table "addresses", force: :cascade do |t|
     t.integer  "addressable_id"
     t.string   "addressable_type"
@@ -259,18 +250,6 @@ ActiveRecord::Schema.define(version: 20161201081100) do
     t.index ["taxpayer_id"], name: "index_required_documents_on_taxpayer_id", using: :btree
   end
 
-  create_table "requirements", force: :cascade do |t|
-    t.integer  "business_id"
-    t.integer  "required_document_id"
-    t.string   "reference_number"
-    t.date     "date_issued"
-    t.date     "expiry_date"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.index ["business_id"], name: "index_requirements_on_business_id", using: :btree
-    t.index ["required_document_id"], name: "index_requirements_on_required_document_id", using: :btree
-  end
-
   create_table "retirements", force: :cascade do |t|
     t.integer  "business_id"
     t.text     "remarks"
@@ -361,8 +340,6 @@ ActiveRecord::Schema.define(version: 20161201081100) do
     t.index ["type"], name: "index_users_on_type", using: :btree
   end
 
-  add_foreign_key "additional_requirements", "businesses"
-  add_foreign_key "additional_requirements", "required_documents"
   add_foreign_key "barangays", "municipalities"
   add_foreign_key "business_activities", "businesses"
   add_foreign_key "business_activities", "line_of_businesses"
@@ -375,8 +352,6 @@ ActiveRecord::Schema.define(version: 20161201081100) do
   add_foreign_key "mayors", "municipalities"
   add_foreign_key "municipalities", "provinces"
   add_foreign_key "required_documents", "departments"
-  add_foreign_key "requirements", "businesses"
-  add_foreign_key "requirements", "required_documents"
   add_foreign_key "retirements", "businesses"
   add_foreign_key "tins", "taxpayers"
   add_foreign_key "users", "departments"
