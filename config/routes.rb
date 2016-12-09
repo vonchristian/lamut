@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :searches, only: [:index]
 
   root :to => "taxpayers#index", :constraints => lambda { |request| request.env['warden'].user.nil? }, as: :unauthenticated_root
+  root :to => 'pnp_section#index', :constraints => lambda { |request| request.env['warden'].user.role == 'police_officer' if request.env['warden'].user }, as: :pnp_section_root
+
 root :to => 'dashboards#bplo', :constraints => lambda { |request| request.env['warden'].user.role == 'bplo_officer' if request.env['warden'].user }, as: :bplo_root
 root :to => 'dashboards#collection_clerk', :constraints => lambda { |request| request.env['warden'].user.role == 'collection_clerk' if request.env['warden'].user }, as: :collection_clerk_root
 root :to => 'accounting/accounts#index', :constraints => lambda { |request| request.env['warden'].user.role == 'bookkeeper' if request.env['warden'].user }, as: :bookkeeper_root
@@ -68,6 +70,9 @@ namespace :engineering_section do
     resources :engineering_clearances, only: [:new, :create]
   end
   resources :engineering_clearances, only: [:index]
+end
+namespace :pnp_section do
+  resources :police_clearances
 end
 
 
