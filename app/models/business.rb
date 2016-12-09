@@ -18,6 +18,8 @@ class Business < ApplicationRecord
   has_many :mayors_permit_fees, through: :line_of_businesses
   has_many :gross_sales
   has_many :business_requirements
+  has_many :required_documents, through: :business_requirements
+
 
   accepts_nested_attributes_for :addresses, :business_activities
 
@@ -27,6 +29,7 @@ class Business < ApplicationRecord
 
   delegate :retired?, to: :retirement
   delegate :annually?, :semi_annually?, :quarterly?, to: :mode_of_payment, allow_nil: true
+
 
   def current_address
     addresses.current.last.try(:address_details)

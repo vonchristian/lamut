@@ -12,6 +12,8 @@ module Taxpayers
       if @business.save
         redirect_to @business, notice: "Business saved successfully."
         BusinessRequirement.set_default_requirements(@business)
+        BusinessRequirement.set_additional_requirements(@business)
+
       else
         render :new
       end
