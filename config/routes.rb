@@ -37,7 +37,7 @@ root :to => 'health_unit#index', :constraints => lambda { |request| request.env[
     end
 
     resources :barangays, only: [:new, :create]
-    resources :line_of_businesses, only: [:new, :create, :index]
+    resources :line_of_businesses, only: [:new, :create, :index, :edit, :update]
     resources :line_of_business_classifications, only: [:new, :create]
     resources :business_classifications, only: [:new, :create, :edit, :update]
     resources :employees, only: [:new, :create, :show, :index]

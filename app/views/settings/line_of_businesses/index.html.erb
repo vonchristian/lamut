@@ -26,6 +26,11 @@
                   <div class="col-md-3">
                     <p class="pull-right text-muted"><%=number_to_currency line_of_business.mayors_permit_fee_amount %></p>
                   </div>
+                  <div class="col-md-2">
+                    <%=link_to edit_settings_line_of_business_path(line_of_business) do %>
+                    <span class="text-danger" title="Edit" data-toggle="tooltip"><i class="fa fa-pencil"></i></span>
+                    <% end %>
+                  </div>
                 </div>
                 <hr>
               <% end %>
