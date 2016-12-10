@@ -3,13 +3,16 @@ module Businesses
     MINIMUM_GROSS_SALE_AMOUNT_FOR_RETAILERS = 30_000
 
     belongs_to :business
-    belongs_to :business_tax
 
-    validates :amount, presence: true
-    validate :must_be_greater_than_minimum_gross_sale_amount_if_retailers
-    validate :once_a_year
+    validates :amount, presence: true, numericality: {greater_than: 0.1 }
+    validates :calendar_year, presence: true
+    validate :must_be_greater_than_minimum_gross_sale_amount_if_retailers, on: :create
+    validate :once_a_year, on: :create
 
     before_save :set_tax
+
+    delegate :retailer?, to: :business, prefix: true, allow_nil: true
+    delegate :gross_sale_entered, to: :business, allow_nil: true
 
     def self.with_unpaid_tax
       all.select{|a| a.tax_paid? == false }
@@ -27,11 +30,11 @@ module Businesses
     end
 
     def once_a_year
-      errors.add(:calendar_year, "Can only be once a year") if self.business.gross_sale_entered(self.calendar_year.year)
+      errors.add(:calendar_year, "Can only be once a year") if self.gross_sale_entered(self.calendar_year.try(:year))
     end
 
     def must_be_greater_than_minimum_gross_sale_amount_if_retailers
-      errors.add(:calendar_year, "Must be greater than #{MINIMUM_GROSS_SALE_AMOUNT_FOR_RETAILERS}") if self.business.retailer? && self.amount < MINIMUM_GROSS_SALE_AMOUNT_FOR_RETAILERS
+      errors.add(:amount, "Must be greater than #{MINIMUM_GROSS_SALE_AMOUNT_FOR_RETAILERS}") if self.business_retailer? && self.amount < MINIMUM_GROSS_SALE_AMOUNT_FOR_RETAILERS
     end
   end
 end

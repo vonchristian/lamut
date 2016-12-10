@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :account, class: "Accounting::Account" do
     code "MyString"
-    type ""
+    type "asset"
     name "MyString"
     contra false
   end

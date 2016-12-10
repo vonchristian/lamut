@@ -17,6 +17,7 @@ module Accounting
 
     validates_presence_of :type
     validates :name, presence: true, uniqueness: true
+    validates :code, presence: true, uniqueness: true
 
     def self.fines_accounts
       Accounting::Account.all.select{|a| Accounting::Account::FINES_ACCOUNTS.include? a.name }
@@ -47,7 +48,7 @@ module Accounting
     end
 
     def self.balance(options={})
-      if self.new.class == Account
+      if self.new.class == Accounting::Account
         raise(NoMethodError, "undefined method 'balance'")
       else
         accounts_balance = BigDecimal.new('0')
@@ -64,8 +65,8 @@ module Accounting
     end
 
     def self.trial_balance
-      if self.new.class == Account
-        Asset.balance - (Liability.balance + Equity.balance + Revenue.balance - Expense.balance)
+      if self.new.class == Accounting::Account
+        Accounting::Asset.balance - (Accounting::Liability.balance + Accounting::Equity.balance + Accounting::Revenue.balance - Accounting::Expense.balance)
       else
         raise(NoMethodError, "undefined method 'trial_balance'")
       end

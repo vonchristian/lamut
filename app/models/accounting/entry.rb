@@ -2,8 +2,10 @@ module Accounting
   class Entry < ApplicationRecord
     include PublicActivity::Common
     include PgSearch
+
     scope :created_between, lambda {|start_date, end_date| where("date >= ? AND date <= ?", start_date, end_date )}
     pg_search_scope :text_search, :against => [:description, :reference_number]
+
     belongs_to :entriable, :polymorphic => true
     belongs_to :recorder, class_name: "User", foreign_key: "recorder_id"
     has_many :credit_amounts, :extend => Accounting::AmountsExtension, :class_name => 'Accounting::CreditAmount', :inverse_of => :entry, dependent: :destroy

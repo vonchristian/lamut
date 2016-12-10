@@ -1,5 +1,5 @@
 class Mayor < ApplicationRecord
-  belongs_to :municipality
+  belongs_to :municipality, class_name: "Addresses::Municipality"
   has_attached_file :photo, styles: { medium: "295x295>",
                                    thumb: "100x100#",
                                    small: "50x50#",

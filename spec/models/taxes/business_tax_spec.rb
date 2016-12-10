@@ -329,7 +329,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     it "returns 19.80 when gross sale is less than 1,000.00" do
       business_classification = Businesses::BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
       business = create(:business, business_classification: business_classification)
-      gross_sale = create(:gross_sale, business: business, amount: 0.1 )
+      gross_sale = create(:gross_sale, business: business, amount: 1 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
       gross_sale.tax = tax
       gross_sale.save
