@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe BusinessActivity, type: :model do
+RSpec.describe Businesses::BusinessActivity, type: :model do
   describe "associations" do
     it { is_expected.to belong_to :line_of_business }
     it { is_expected.to belong_to :business }

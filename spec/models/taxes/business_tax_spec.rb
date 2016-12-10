@@ -12,7 +12,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
   describe ".tax_for_manufacturers_assemblers_repackers_processors_brewers_distillers_rectifiers_and_compounders_of_liquors_distilled_spirits_and_wines_or_manufacturers_of_any_article_of_commerce_of_whatever_kind_in_nature" do
 
     it "returns 181.50 when gross sale is less than 10_000" do
-      business_classification = BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 9_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -21,7 +21,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
       expect(tax).to eql(181.50)
     end
     it "returns 242.00 when gross sale is 10,000.00 or more but less than 15,000.00" do
-      business_classification = BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 10_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -37,7 +37,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 332.20 when gross sale is 15,000.00 or more but less than 20,000.00" do
-      business_classification = BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 15_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -53,7 +53,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 484.00 when gross sale is 20,000.00 or more but less than 30,000.00" do
-      business_classification = BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 20_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -69,7 +69,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 726.00 when gross sale is 30,000.00 or more but less than 40,000.00" do
-      business_classification = BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 30_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -85,7 +85,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 907.50 when gross sale is 40,000.00 or more but less than 50,000.00" do
-      business_classification = BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 40_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -101,7 +101,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 1,452.00 when gross sale is 50,000.00 or more but less than  75,000.00" do
-      business_classification = BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 50_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -117,7 +117,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 1,815.00 when gross sale is 75,000.00 or more but less than 100,000.00" do
-      business_classification = BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 75_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -133,7 +133,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 2,420.00 when gross sale is 100,000.00 or more but less than 150,000.00" do
-      business_classification = BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 100_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -149,7 +149,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 3,025.00 when gross sale is 150,000.00 or more but less than 200,000.00" do
-      business_classification = BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 150_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -165,7 +165,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 4,235.00 when gross sale is 200,000.00 or more but less than 300,000.00" do
-      business_classification = BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 200_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -181,7 +181,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 6,050.00 when gross sale is 300,000.00 or more but less than 500,000.00" do
-      business_classification = BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 300_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -197,7 +197,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 8,800.00 when gross sale is 500,000.00 or more but less than 750,000.00" do
-      business_classification = BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 500_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -213,7 +213,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 11,000.00 when gross sale is 750,000.00 or more but less than 1,000,000.00" do
-      business_classification = BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 750_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -229,7 +229,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 15,125.00 when gross sale is 1,000,000.00 or more but less than 2,000,000.00" do
-      business_classification = BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 1_000_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -245,7 +245,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 18,150.00 when gross sale is 2,000,000.00 or more but less than 3,000,000.00" do
-      business_classification = BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 2_000_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -261,7 +261,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 21,780.00 when gross sale is 3,000,000.00 or more but less than 4,000,000.00" do
-      business_classification = BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 3_000_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -277,7 +277,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 25,410.00 when gross sale is 4,000,000.00 or more but less than 5,000,000.00" do
-      business_classification = BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 4_000_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -293,7 +293,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 26,812.50 when gross sale is 5,000,000.00 or more but less than 6,500,000.00" do
-      business_classification = BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 5_000_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -309,7 +309,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns a rate not exceeding 37 ½  of 1% when gross sale is more  than 6,500,000.00" do
-      business_classification = BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 6_500_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -327,7 +327,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
 
   describe "tax_for_wholesalers_distributors_or_dealers_in_any_article_or_commerce_what_ever_in_kind_in_nature_or_accordance" do
     it "returns 19.80 when gross sale is less than 1,000.00" do
-      business_classification = BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 0.1 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -343,7 +343,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 36.30 when gross sale is 1,000.00 or more but less than 2,000.00" do
-      business_classification = BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 1_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -359,7 +359,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 55.00 when gross sale is 2,000.00 or more but less than 3,000.00" do
-      business_classification = BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 2_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -375,7 +375,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 79.20 when gross sale is 3,000.00 or more but less than 4,000.00" do
-      business_classification = BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 3_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -391,7 +391,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 110.00 when gross sale is 4,000.00 or more but less than 5,000.00" do
-      business_classification = BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 4_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -407,7 +407,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 133.10 when gross sale is 5,000.00 or more but less than 6,000.00" do
-      business_classification = BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 5_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -423,7 +423,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 157.30 when gross sale is 6,000.00 or more but less than 7,000.00" do
-      business_classification = BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 6_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -439,7 +439,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 181.50 when gross sale is 7,000.00 or more but less than 8,000.00" do
-      business_classification = BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 7_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -455,7 +455,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 205.70 when gross sale is 8,000.00 or more but less than 10,000.00" do
-      business_classification = BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 8_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -471,7 +471,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 242.00 when gross sale is 10,000.00 or more but less than 15,000.00" do
-      business_classification = BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 10_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -487,7 +487,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 302.50 when gross sale is 15,000.00 or more but less than 20,000.00" do
-      business_classification = BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 15_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -503,7 +503,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 363.00 when gross sale is 20,000.00 or more but less than 30,000.00" do
-      business_classification = BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 20_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -519,7 +519,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 484.00 when gross sale is 30,000.00 or more but less than 40,000.00" do
-      business_classification = BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 30_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -535,7 +535,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 726.00 when gross sale is 40,000.00 or more but less than 50,000.00" do
-      business_classification = BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 40_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -551,7 +551,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 1,089.00 when gross sale is 50,000.00 or more but less than 75,000.00" do
-      business_classification = BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 50_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -567,7 +567,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 1,452.00 when gross sale is 75,000.00 or more but less than 100,000.00" do
-      business_classification = BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 75_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -583,7 +583,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 2,057.00 when gross sale is 100,000.00 or more but less than 150,000.00 " do
-      business_classification = BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 100_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -599,7 +599,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 2,662.00 when gross sale is 150,000.00 or more but less than 200,000.00" do
-      business_classification = BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 150_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -615,7 +615,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 3,630.00 when gross sale is 200,000.00 or more but less than 300,000.00" do
-      business_classification = BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 200_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -631,7 +631,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 4,840.00 when gross sale is 300,000.00 or more but less than 500,000.00" do
-      business_classification = BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 300_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -647,7 +647,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 7,260.00 when gross sale is 500,000.00 or more but less than 750,000.00" do
-      business_classification = BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 500_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -663,7 +663,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 9,680.00 when gross sale is 750,000.00 or more but less than 1,000,000.00" do
-      business_classification = BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 750_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -679,7 +679,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns 11,000.00 when gross sale is 1,000,000.00 or more but less than 2,000,000.00" do
-      business_classification = BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 1_000_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -695,7 +695,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns a rate not exceeding 50% percent of 1% when gross sale is  more than 2,000,000.00" do
-      business_classification = BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
+      business_classification = Businesses::BusinessClassification.find_by_name "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 2_000_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -712,7 +712,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
   end
   describe "tax_for_retailers" do
     it "returns a rate of 2% when gross sale is  less than or equal to 400,000.00" do
-      business_classification = BusinessClassification.find_by_name "Retailers"
+      business_classification = Businesses::BusinessClassification.find_by_name "Retailers"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 30_000 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)
@@ -728,7 +728,7 @@ RSpec.describe Taxes::BusinessTax, type: :model do
     end
 
     it "returns a rate of 1% when gross sale is  more than 400,000.00" do
-      business_classification = BusinessClassification.find_by_name "Retailers"
+      business_classification = Businesses::BusinessClassification.find_by_name "Retailers"
       business = create(:business, business_classification: business_classification)
       gross_sale = create(:gross_sale, business: business, amount: 400_001 )
       tax =  Taxes::BusinessTax.set_tax(gross_sale)

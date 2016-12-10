@@ -1,1 +1,1 @@
-Province.create name: "Ifugao"
+Addresses::Province.create name: "Ifugao"

@@ -1,4 +1,4 @@
-classification_1 = BusinessClassification.find_by_name("Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature")
+classification_1 = Businesses::BusinessClassification.find_by_name("Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature")
 Taxes::BusinessTax.create(business_classification_id: classification_1.id, minimum_amount: 0.01, maximum_amount: 9_999.99, tax_amount: 181.50)
 Taxes::BusinessTax.create(business_classification_id: classification_1.id, minimum_amount: 10_000, maximum_amount: 14_999.99, tax_amount: 242)
 Taxes::BusinessTax.create(business_classification_id: classification_1.id, minimum_amount: 15_000, maximum_amount: 19_999.99, tax_amount: 332.20)
@@ -19,7 +19,7 @@ Taxes::BusinessTax.create(business_classification_id: classification_1.id, minim
 Taxes::BusinessTax.create(business_classification_id: classification_1.id, minimum_amount: 4_000_000, maximum_amount: 4_999_999.99, tax_amount: 25410)
 Taxes::BusinessTax.create(business_classification_id: classification_1.id, minimum_amount: 5_000_000, maximum_amount: 6_499_999.99, tax_amount: 26812.50)
 
-classification_2 = BusinessClassification.find_by_name("Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature")
+classification_2 = Businesses::BusinessClassification.find_by_name("Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature")
 
 
 Taxes::BusinessTax.create(business_classification_id: classification_2.id, minimum_amount: 0.01, maximum_amount: 999.99, tax_amount: 19.80)
@@ -47,7 +47,7 @@ Taxes::BusinessTax.create(business_classification_id: classification_2.id, minim
 Taxes::BusinessTax.create(business_classification_id: classification_2.id, minimum_amount: 1_000_000, maximum_amount: 1_999_999.99, tax_amount: 11000)
 
 
-classification_3 = BusinessClassification.find_by_name('Contractors and Other Independent Contractors')
+classification_3 = Businesses::BusinessClassification.find_by_name('Contractors and Other Independent Contractors')
 
 Taxes::BusinessTax.create(business_classification_id: classification_3.id, minimum_amount: 0.1, maximum_amount: 4_999.99, tax_amount: 30.25)
 Taxes::BusinessTax.create(business_classification_id: classification_3.id, minimum_amount: 5_000, maximum_amount: 9_999.99, tax_amount: 67.65)
@@ -69,7 +69,7 @@ Taxes::BusinessTax.create(business_classification_id: classification_3.id, minim
 Taxes::BusinessTax.create(business_classification_id: classification_3.id, minimum_amount: 1_000_000, maximum_amount: 1_999_999.99, tax_amount: 12650)
 
 
-classification_4 = BusinessClassification.find_by_name("Business hereunder enumerated: Cafes, cafeterias, ice cream and other refreshment parlors, restaurants, soda fountain bars, carinderias or food caterers; Commission agents; Lessors, dealers, brokers of real estate; On travel agencies and travel agents; Boarding houses, motels, apartments, and condominiums; Subdivision owners/Private Cemeteries and Memorial Parks; Hospitals, medical/dental/therapeutic clinics, medical/dental laboratories; Operators of Cable Network System; Operators of computer services establishments; General consultancy services; All other similar activities consisting essentially of the sales of services for a fee.")
+classification_4 = Businesses::BusinessClassification.find_by_name("Business hereunder enumerated: Cafes, cafeterias, ice cream and other refreshment parlors, restaurants, soda fountain bars, carinderias or food caterers; Commission agents; Lessors, dealers, brokers of real estate; On travel agencies and travel agents; Boarding houses, motels, apartments, and condominiums; Subdivision owners/Private Cemeteries and Memorial Parks; Hospitals, medical/dental/therapeutic clinics, medical/dental laboratories; Operators of Cable Network System; Operators of computer services establishments; General consultancy services; All other similar activities consisting essentially of the sales of services for a fee.")
 
 Taxes::BusinessTax.create(business_classification_id: classification_4.id, minimum_amount: 0.1, maximum_amount: 4_999.99, tax_amount: 30)
 Taxes::BusinessTax.create(business_classification_id: classification_4.id, minimum_amount: 5_000, maximum_amount: 9_999.99, tax_amount: 67)

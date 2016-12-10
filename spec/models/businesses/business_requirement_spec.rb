@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe BusinessRequirement, type: :model do
+RSpec.describe Businesses::BusinessRequirement, type: :model do
   describe "associations" do
     it { is_expected.to belong_to :required_document }
     it { is_expected.to belong_to :business }

@@ -1,6 +1,6 @@
 module Taxes
   class BusinessTax < ApplicationRecord
-    belongs_to :business_classification
+    belongs_to :business_classification, class_name: "Businesses::BusinessClassification"
     def self.set_tax(gross_sale)
       return tax_for_manufacturers_assemblers_repackers_processors_brewers_distillers_rectifiers_and_compounders_of_liquors_distilled_spirits_and_wines_or_manufacturers_of_any_article_of_commerce_of_whatever_kind_in_nature_in_excess_of_6_500_000(gross_sale) if gross_sale.business.business_classification_name == "Manufacturers, assemblers, re-packers, processors, brewers, distillers, rectifiers, and compounders of liquors, distilled spirits, and wines or manufacturers of any article of commerce of whatever kind in nature" && (6_500_000..Float::INFINITY).include?(gross_sale.amount.to_f)
       return tax_for_wholesalers_distributors_or_dealers_of_any_article_or_commerce_of_whatever_kind_or_nature_in_excess_of_2_000_000(gross_sale) if gross_sale.business.business_classification_name == "Wholesalers, distributors, or dealers of any article of commerce of whatever kind or nature" && (2_000_000..Float::INFINITY).include?(gross_sale.amount.to_f)

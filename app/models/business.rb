@@ -11,14 +11,14 @@ class Business < ApplicationRecord
   has_one :retirement, class_name: "Businesses::Retirement"
   has_one :revocation, class_name: "Businesses::Revocation"
   belongs_to :taxpayer
-  belongs_to :business_classification
+  belongs_to :business_classification, class_name: "Businesses::BusinessClassification"
   belongs_to :mode_of_payment
   has_many :addresses, as: :addressable
-  has_many :business_activities
+  has_many :business_activities, class_name: "Businesses::BusinessActivity"
   has_many :line_of_businesses, through: :business_activities
   has_many :mayors_permit_fees, through: :line_of_businesses
-  has_many :gross_sales
-  has_many :business_requirements
+  has_many :gross_sales, class_name: "Businesses::GrossSale"
+  has_many :business_requirements, class_name: "Businesses::BusinessRequirement"
   has_many :required_documents, through: :business_requirements
 
 
