@@ -1,24 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+End to end platform to allow Local Government Units to monitor businesses operating in their locality. Enables them to streamline business registration process. It simplifies business registration process to three steps:
 
-Things you may want to cover:
+* Application
+* Payment
+* Approval
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+It also enables convenient business registration for taxpayers. Online application for business permit, payments of fees and taxes and approval of their applications.

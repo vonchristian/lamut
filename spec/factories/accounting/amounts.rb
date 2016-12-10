@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :amount do
+  factory :amount, class: "Accounting::Amount" do
     type ""
     account nil
     entry nil

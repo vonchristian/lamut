@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :entry do
+  factory :entry, class: "Accounting::Entry" do
     reference_number "MyString"
     date "2016-11-10 09:29:30"
     entriable_id 1
