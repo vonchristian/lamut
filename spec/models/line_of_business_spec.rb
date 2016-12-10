@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe LineOfBusiness, type: :model do
   describe "associations" do
     it { is_expected.to have_one :mayors_permit_fee }
+    it { is_expected.to have_many :business_activities }
+    it { is_expected.to have_many :businesses }
   end
 
   describe "validations" do

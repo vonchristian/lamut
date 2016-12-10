@@ -3,6 +3,8 @@ class LineOfBusiness < ApplicationRecord
   pg_search_scope :text_search, :against => [:name]
 
   has_one :mayors_permit_fee, as: :feeable, class_name: "Fees::MayorsPermitFee"
+  has_many :business_activities, class_name: "Businesses::BusinessActivity"
+  has_many :businesses, through: :business_activities
 
   validates :name, presence: true, uniqueness: true
 

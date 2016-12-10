@@ -5,11 +5,12 @@ class Taxpayer < ApplicationRecord
     :ignoring => :accents
   pg_search_scope :text_search, :against => [:first_name, :middle_name, :last_name]
 
-  has_one :tin
+  has_one :tin, class_name: "Taxpayers::Tin"
   has_many :addresses, as: :addressable
   has_many :businesses
-  has_many :health_certificates, class_name: "HealthUnitSection::HealthCertificate"
-  has_many :sanitary_permits, class_name: "HealthUnitSection::SanitaryPermit"
+  has_many :issued_documents, class_name: "RequiredDocuments::Issuance", as: :recipient
+  has_many :health_certificates, through: :issued_documents, class_name: "HealthUnitSection::HealthCertificate"
+  has_many :sanitary_permits, through: :issued_documents, class_name: "HealthUnitSection::SanitaryPermit"
 
   has_attached_file :photo, styles: { medium: "295x295>",
                                       thumb: "100x100#",
@@ -22,6 +23,7 @@ class Taxpayer < ApplicationRecord
   enum civil_status: [:single, :married, :widower, :annulled]
   accepts_nested_attributes_for :addresses
   delegate :number, to: :tin, allow_nil: true, prefix: true
+
   def full_name
     "#{first_name} #{middle_name} #{last_name}"
   end
@@ -35,6 +37,6 @@ class Taxpayer < ApplicationRecord
   end
 
   def current_address
-    addresses.current.last
+    addresses.current.last.try(:address_details)
   end
 end
