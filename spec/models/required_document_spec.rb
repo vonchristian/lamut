@@ -11,20 +11,23 @@ RSpec.describe RequiredDocument, type: :model do
       is_expected.to delegate_method(:name).to(:department).with_prefix
     end
   end
-  it ".default" do
-    required_document1 = create(:required_document, default: true)
-    required_document2 = create(:required_document, default: false)
+  
+  describe "scoping" do
+    it ".default" do
+      required_document1 = create(:required_document, default: true)
+      required_document2 = create(:required_document, default: false)
 
-    expect(RequiredDocument.default).to include(required_document1)
-    expect(RequiredDocument.default).to_not include(required_document2)
-  end
+      expect(RequiredDocument.default).to include(required_document1)
+      expect(RequiredDocument.default).to_not include(required_document2)
+    end
 
-  it ".not_default" do
-    required_document1 = create(:required_document, default: true)
-    required_document2 = create(:required_document, default: false)
+    it ".not_default" do
+      required_document1 = create(:required_document, default: true)
+      required_document2 = create(:required_document, default: false)
 
-    expect(RequiredDocument.not_default).to include(required_document2)
-    expect(RequiredDocument.not_default).to_not include(required_document1)  
+      expect(RequiredDocument.not_default).to include(required_document2)
+      expect(RequiredDocument.not_default).to_not include(required_document1)
+    end
   end
 
 end

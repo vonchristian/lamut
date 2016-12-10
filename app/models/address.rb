@@ -1,8 +1,9 @@
 class Address < ApplicationRecord
   belongs_to :addressable, polymorphic: true
-  belongs_to :barangay
-  belongs_to :municipality
-  belongs_to :province
+  belongs_to :barangay, class_name: "Addresses::Barangay"
+  belongs_to :municipality, class_name: "Addresses::Municipality"
+  belongs_to :province, class_name: "Addresses::Province"
+
   def self.current
     all.where(current: true)
   end

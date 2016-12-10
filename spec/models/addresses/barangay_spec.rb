@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Barangay, type: :model do
+RSpec.describe Addresses::Barangay, type: :model do
   describe "associations" do
     it { is_expected.to belong_to :municipality }
   end

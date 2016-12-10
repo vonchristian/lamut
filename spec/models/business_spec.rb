@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Business, type: :model do
   describe "associations" do
     it { is_expected.to have_one :retirement }
+    it { is_expected.to have_one :revocation }
     it { is_expected.to belong_to :taxpayer }
     it { is_expected.to belong_to :business_classification }
     it { is_expected.to belong_to :mode_of_payment }
@@ -21,8 +22,7 @@ RSpec.describe Business, type: :model do
    it { should delegate_method(:name).to(:business_classification).with_prefix(true) }
    it { should delegate_method(:name).to(:taxpayer).with_prefix(true) }
    it { should delegate_method(:retired?).to(:retirement) }
-
-
+   it { should delegate_method(:revoked?).to(:revocation) }
   end
 
   describe "nested attributes" do

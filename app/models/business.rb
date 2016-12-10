@@ -8,7 +8,8 @@ class Business < ApplicationRecord
                                       default_url: ":style/no_logo.png"
 
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
-  has_one :retirement
+  has_one :retirement, class_name: "Businesses::Retirement"
+  has_one :revocation, class_name: "Businesses::Revocation"
   belongs_to :taxpayer
   belongs_to :business_classification
   belongs_to :mode_of_payment
@@ -28,6 +29,7 @@ class Business < ApplicationRecord
   delegate :retailer?, to: :business_classification, allow_nil: true
 
   delegate :retired?, to: :retirement
+  delegate :revoked?, to: :revocation
   delegate :annually?, :semi_annually?, :quarterly?, to: :mode_of_payment, allow_nil: true
 
 

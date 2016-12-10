@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161209040037) do
+ActiveRecord::Schema.define(version: 20161210103329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,6 +125,15 @@ ActiveRecord::Schema.define(version: 20161209040037) do
     t.integer  "mode_of_payment_id"
     t.index ["mode_of_payment_id"], name: "index_businesses_on_mode_of_payment_id", using: :btree
     t.index ["taxpayer_id"], name: "index_businesses_on_taxpayer_id", using: :btree
+  end
+
+  create_table "businesses_revocations", force: :cascade do |t|
+    t.datetime "revoked_at"
+    t.string   "violation"
+    t.integer  "business_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["business_id"], name: "index_businesses_revocations_on_business_id", using: :btree
   end
 
   create_table "departments", force: :cascade do |t|
@@ -279,6 +288,15 @@ ActiveRecord::Schema.define(version: 20161209040037) do
     t.index ["business_id"], name: "index_retirements_on_business_id", using: :btree
   end
 
+  create_table "revocations", force: :cascade do |t|
+    t.integer  "business_id"
+    t.string   "violation"
+    t.datetime "revoked_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["business_id"], name: "index_revocations_on_business_id", using: :btree
+  end
+
   create_table "signatories", force: :cascade do |t|
     t.integer  "documentable_id"
     t.string   "documentable_type"
@@ -368,6 +386,7 @@ ActiveRecord::Schema.define(version: 20161209040037) do
   add_foreign_key "business_requirements", "businesses"
   add_foreign_key "business_requirements", "required_documents"
   add_foreign_key "businesses", "taxpayers"
+  add_foreign_key "businesses_revocations", "businesses"
   add_foreign_key "gross_sales", "businesses"
   add_foreign_key "issuances", "required_documents"
   add_foreign_key "line_of_businesses", "line_of_business_classifications"
@@ -377,6 +396,7 @@ ActiveRecord::Schema.define(version: 20161209040037) do
   add_foreign_key "requirements", "businesses"
   add_foreign_key "requirements", "required_documents"
   add_foreign_key "retirements", "businesses"
+  add_foreign_key "revocations", "businesses"
   add_foreign_key "tins", "taxpayers"
   add_foreign_key "users", "departments"
 end
