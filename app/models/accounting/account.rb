@@ -2,6 +2,7 @@ module Accounting
   class Account < ApplicationRecord
     has_paper_trail
     class_attribute :normal_credit_balance
+    belongs_to :aggregate_account, class_name: "Accounting::Account", foreign_key: 'aggregate_account_id'
     has_many :amounts
     has_many :credit_amounts, :extend => Accounting::AmountsExtension, class_name: "Accounting::CreditAmount"
     has_many :debit_amounts, :extend => Accounting::AmountsExtension, class_name: "Accounting::DebitAmount"
@@ -13,12 +14,16 @@ module Accounting
     validates :name, presence: true, uniqueness: true
     validates :account_code, presence: true, uniqueness: true
 
+    def self.omit_aggregate_accounts
+      select{ |a| a.aggregate_account_code.blank?}
+    end
+
     def self.fines_accounts
       Accounting::Account.all.select{|a| Accounting::Account::FINES_ACCOUNTS.include? a.name }
     end
 
     def self.types
-      %w(Asset Liability Equity Revenue Expense)
+      %w(Accounting::Asset Accounting::Liability Accounting::Equity Accounting::Revenue Accounting::Expense)
     end
 
      def balance(options={})
