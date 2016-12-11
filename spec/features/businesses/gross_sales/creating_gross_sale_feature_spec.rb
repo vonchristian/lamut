@@ -16,8 +16,6 @@ feature "Creating Gross sale" do
     fill_in "Calendar year", with: Date.today
     click_button "Save"
 
-    # save_and_open_page
-
     expect(page).to have_content("saved successfully")
   end
   scenario 'with invalid attributes' do
