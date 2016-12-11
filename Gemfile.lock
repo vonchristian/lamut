@@ -46,7 +46,7 @@ GEM
     animate-rails (1.0.10)
       rails
     arel (7.1.4)
-    autoprefixer-rails (6.5.3)
+    autoprefixer-rails (6.5.3.1)
       execjs
     barby (0.6.5)
     bcrypt (3.1.11)
@@ -58,13 +58,15 @@ GEM
     builder (3.2.2)
     byebug (9.0.6)
     callsite (0.0.11)
-    capybara (2.10.2)
+    capybara (2.11.0)
       addressable
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    childprocess (0.5.9)
+      ffi (~> 1.0, >= 1.0.11)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.8)
@@ -116,6 +118,8 @@ GEM
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -133,11 +137,11 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mimemagic (0.3.2)
-    mina (0.3.8)
+    mina (1.0.3)
       open4 (~> 1.3.4)
       rake
-    mina-puma (0.3.2)
-      mina (< 1.0.0)
+    mina-puma (1.0.0)
+      mina (~> 1.0.0)
       puma (>= 2.13)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
@@ -215,7 +219,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (11.3.0)
+    rake (12.0.0)
     rb-fsevent (0.9.8)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
@@ -240,6 +244,7 @@ GEM
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
     ruby_dep (1.5.0)
+    rubyzip (1.2.0)
     sass (3.4.22)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -249,6 +254,10 @@ GEM
       tilt (>= 1.1, < 3)
     select2-rails (4.0.3)
       thor (~> 0.14)
+    selenium-webdriver (3.0.3)
+      childprocess (~> 0.5)
+      rubyzip (~> 1.0)
+      websocket (~> 1.0)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
     simple-line-icons-rails (0.1.1)
@@ -278,6 +287,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     warden (1.2.6)
       rack (>= 1.0)
+    websocket (1.2.3)
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -307,6 +317,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   kaminari
+  launchy
   listen
   meta_request
   mina-puma
@@ -328,6 +339,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 5.0)
   select2-rails
+  selenium-webdriver
   shoulda-matchers
   simple-line-icons-rails
   simple_form

@@ -43,7 +43,6 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem "rspec-rails"
   gem 'factory_girl_rails'
-  gem 'capybara'
   gem 'faker'
 end
 
@@ -56,7 +55,10 @@ group :development do
 end
 
 group :test do
+  gem 'capybara'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
+  gem 'launchy'
+  gem 'selenium-webdriver'
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
