@@ -16,7 +16,7 @@ module Taxpayers
 
     private
     def tin_params
-      params.require(:tin).permit(:number)
+      params.require(:taxpayers_tin).permit(:number)
     end
   end
-end 
+end

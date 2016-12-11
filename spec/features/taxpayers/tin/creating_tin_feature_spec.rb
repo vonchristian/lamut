@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 feature "Adding TIN of Taxpayer" do
-  before(:each) do
-    user = create(:user)
-    login_as(user, scope: user)
-  end
+  before (:each) do
+     user = FactoryGirl.create(:user)
+     login_as(user, :scope => :user)
+   end
   given!(:taxpayer) { create(:taxpayer) }
   scenario 'with valid atributes' do
     visit taxpayer_path(taxpayer)
