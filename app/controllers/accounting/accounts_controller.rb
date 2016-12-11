@@ -25,7 +25,7 @@ module Accounting
     def create
       @account = Accounting::Account.create(account_params)
       if @account.save
-        redirect_to accounting_accounts_url, notice: "Account created successfully."
+        redirect_to accounting_accounts_url, notice: "Account created successfully. #{undo_link}"
       else
         render :new
       end
@@ -55,6 +55,9 @@ module Accounting
     end
 
     private
+    def undo_link
+      view_context.link_to("Undo Action", revert_version_path(@account.versions.last), method: :post, class: "btn btn-success pull-right")
+    end
 
     def set_type
       @type = type
