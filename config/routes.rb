@@ -24,7 +24,7 @@ root :to => 'health_unit#index', :constraints => lambda { |request| request.env[
   resources :fees
   resources :businesses, only: [:index, :show, :edit, :update] do
     resources :assessments, only: [:new, :create], module: :businesses
-    resources :business_activities, only: [:new, :create], module: :businesses
+    resources :business_activities, only: [:new, :create, :delete], module: :businesses
     resource :retirement, only: [:new, :create], module: :businesses
     resources :gross_sales, only: [:new, :create], module: :businesses
     resources :business_classifications, only: [:edit, :update], module: :businesses

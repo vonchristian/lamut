@@ -25,7 +25,7 @@
                 <span class="pull-right text-muted"><%=number_to_currency business_activity.line_of_business_mayors_permit_fee_amount %></span>
               </div>
               <div class="col-md-2">
-                <%=link_to business_activity, method: :delete, data: {confirm: "Are you sure"} do %>
+                <%=link_to business_activity_path(business_activity), method: :delete, data: {confirm: "Are you sure"} do %>
                   <span class="text-danger pull-right" title="Remove" data-toggle="tooltip"><i class="icon-close"></i></span>
                 <% end %>
 
@@ -69,13 +69,13 @@
                    <span class="pull-right text-muted"><%=number_to_currency line_of_business.mayors_permit_fee_amount %></span>
                  </div>
                  <div class="col-md-3">
-                   <%=simple_form_for [@business, BusinessActivity.new], url: :business_business_activities do |f| %>
+                   <%=simple_form_for [@business, Businesses::BusinessActivity.new], url: :business_business_activities do |f| %>
                    <%=f.error_notification %>
                    <%=f.input :line_of_business_id, input_html: {value: line_of_business.id }, label: false, as: :hidden %>
                    <%if  @business.line_of_businesses.include?(line_of_business) %>
                    <btn class="fa fa-toggle-on text-primary" title="Already added" data-toggle="tooltip"></btn>
                    <% else %>
-                   <%=f.submit "Add", class: "btn btn-default btn-xs" %>
+                   <%=f.submit "Add", class: "btn btn-default btn-xs", title: "Add Business Activity" %>
                    <% end %>
                    <% end %>
                  </div>
@@ -99,7 +99,7 @@
                         <span class="pull-right text-muted"><%=number_to_currency line_of_business.mayors_permit_fee_amount %></span>
                       </div>
                       <div class="col-md-3">
-                        <%=simple_form_for [@business, BusinessActivity.new], url: :business_business_activities do |f| %>
+                        <%=simple_form_for [@business, Businesses::BusinessActivity.new], url: :business_business_activities do |f| %>
                         <%=f.error_notification %>
                         <%=f.input :line_of_business_id, input_html: {value: line_of_business.id }, label: false, as: :hidden %>
                         <%if  @business.line_of_businesses.include?(line_of_business) %>

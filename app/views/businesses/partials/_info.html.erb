@@ -22,7 +22,7 @@
           <h4 class="box-title text-muted"><i class="icon-badge"></i> Business Activities</h4>
         </div>
         <div class="col-md-6">
-          <%=link_to new_business_business_activity_path(@business) do %>
+          <%=link_to new_business_business_activity_path(@business),title: "Add New Business Activity" do %>
             <span class="btn btn-default btn-flat pull-right"  title="Add New Business Activity" data-toggle="tooltip"><i class="icon-plus"></i> Add </span>
           <% end %>
         </div>
@@ -84,7 +84,7 @@
       <h4 class="box-title"> <i class="icon-bell"></i> Notifications </h4>
       <hr />
       <h4 class="box-title"> <i class="icon-list"></i> Checklist </h4>
-  
+
       <% @business.business_requirements.each do |document| %>
       <ul class="list-unstyled">
       <li><%=document.required_document_name %><br>

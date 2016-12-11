@@ -6,7 +6,7 @@
       </div>
       <div class="box-body">
         <%=simple_form_for @business, url: :business_business_classification do |f| %>
-          <%=f.input :business_classification_id, collection: BusinessClassification.all.map{|a| [a.name, a.id]}, as: :radio_buttons %>
+          <%=f.input :business_classification_id, collection: Businesses::BusinessClassification.all.map{|a| [a.name, a.id]}, as: :radio_buttons %>
           <div class="modal-footer">
             <%=f.submit "Update", class: "btn btn-primary" %>
           </div>
