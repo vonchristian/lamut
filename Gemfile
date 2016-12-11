@@ -33,6 +33,7 @@ gem "figaro"
 gem 'barby'
 gem 'prawn-print'
 gem "numbers_and_words"
+gem "paper_trail"
 
 group :production do
   gem 'pg',  group: :development
