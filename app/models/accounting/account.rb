@@ -1,12 +1,6 @@
 module Accounting
   class Account < ApplicationRecord
-    FINES_ACCOUNTS = ["Fines and Penalties - Service Income",
-    "Tax Revenue - Fines and Penalties - Taxes on Individual and Corporation",
-    "Tax Revenue - Fines and Penalties - Property Taxes",
-    "Tax Revenue - Fines and Penalties - Taxes on Goods and Services",
-    "Tax Revenue - Fines and Penalties - Other Taxes",
-    "Fines and Penalties - Service Income",
-    "Fines and Penalties - Business Income"]
+    has_paper_trail
     class_attribute :normal_credit_balance
     has_many :amounts
     has_many :credit_amounts, :extend => Accounting::AmountsExtension, class_name: "Accounting::CreditAmount"
@@ -17,7 +11,7 @@ module Accounting
 
     validates_presence_of :type
     validates :name, presence: true, uniqueness: true
-    validates :code, presence: true, uniqueness: true
+    validates :account_code, presence: true, uniqueness: true
 
     def self.fines_accounts
       Accounting::Account.all.select{|a| Accounting::Account::FINES_ACCOUNTS.include? a.name }

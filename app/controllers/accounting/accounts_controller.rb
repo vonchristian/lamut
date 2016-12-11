@@ -8,7 +8,7 @@ module Accounting
         if params[:name].present?
           @accounts = type_class.search_by_name(params[:name]).page(params[:page]).per(100)
         else
-          @accounts = type_class.all.order(:code).page(params[:page]).per(100)
+          @accounts = type_class.all.order(:account_code).page(params[:page]).per(100)
         end
 
       end
@@ -28,7 +28,7 @@ module Accounting
         redirect_to accounting_accounts_url, notice: "Account created successfully."
       else
         render :new
-      end 
+      end
     end
 
     def update
@@ -73,7 +73,7 @@ module Accounting
     end
 
     def account_params
-      params.require(type.underscore.gsub('/', '_').to_sym).permit(:name, :type, :code)
+      params.require(type.underscore.gsub('/', '_').to_sym).permit(:name, :type, :account_code)
     end
 
   end

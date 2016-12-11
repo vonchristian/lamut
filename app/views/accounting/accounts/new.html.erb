@@ -3,7 +3,8 @@
 </div>
 <div class="modal-dialog">
   <div class="modal-content">
-    <%= simple_form_for  @account, remote: true, html: { style: "display:inline;" } do |f| %>
+    <%= simple_form_for  @account, url: :accounting_accounts do |f| %>
+    <%=f.error_notification %>
       <div class="modal-body">
         <ul class="errors text-danger">
         </ul>
@@ -12,7 +13,7 @@
           <%=f.input :name %>
         </div>
         <div class="form-group">
-          <%=f.input :code %>
+          <%=f.input :account_code %>
         </div>
         <div class="form-group">
           <%=f.input :type, collection: ["Accounting::Asset", "Accounting::Liability", "Accounting::Equity", "Accounting::Expense", "Accounting::Revenue"], as: :radio_buttons %>

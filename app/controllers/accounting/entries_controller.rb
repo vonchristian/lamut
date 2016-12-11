@@ -16,12 +16,10 @@ module Accounting
         end
       end
     end
-    authorize @entries
   end
 
     def new
       @entry = Accounting::Entry.new
-      authorize @entry
       @entry.debit_amounts.build
       @entry.credit_amounts.build
     end
@@ -30,7 +28,6 @@ module Accounting
       @entries = Accounting::Entry.all
       @entry = Accounting::Entry.create(entry_params)
       @entry.recorder = current_user
-      authorize @entry
     end
 
     def show
@@ -51,7 +48,7 @@ module Accounting
 
     private
     def entry_params
-      params.require(:accounting_entry).permit(:date, :description, :reference_number, debit_amounts_attributes:[:amount, :account], credit_amounts_attributes:[:amount, :account])
+      params.require(:accounting_entry).permit(:date, :description, :reference_number, debit_amounts_attributes:[:amount, :account_name], credit_amounts_attributes:[:amount, :account_name])
     end
   end
 end

@@ -13,7 +13,7 @@ module Accounting
     # Support constructing amounts with account = "name" syntax
     def account_with_name_lookup=(v)
       if v.kind_of?(String)
-        ActiveSupport::Deprecation.warn('Accounting was given an :account String (use account_name instead)', caller)
+        ActiveSupport::Deprecation.warn('Plutus was given an :account String (use account_name instead)', caller)
         self.account_name = v
       else
         self.account_without_name_lookup = v

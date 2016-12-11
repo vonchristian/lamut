@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="box box-solid">
+    <div class="box box-default">
       <div class="box-header with-border">
         <%= link_to "New Account", new_accounting_account_path, class: "btn btn-primary pull-right" %>
       </div>
@@ -19,7 +19,7 @@
         <tbody class="entry-index">
           <% @accounts.each do |account| %>
             <tr>
-              <td><%= account.code %></td>
+              <td><%= account.account_code %></td>
               <td><%= account.name %></td>
               <td><%= account.type.gsub('Accounting::', '') %></td>
               <td><span class="pull-right"> <%= number_to_currency account.debits_balance %></span> </td>
