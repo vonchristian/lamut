@@ -337,7 +337,7 @@ DEPENDENCIES
   public_activity
   puma
   pundit
-  rails
+  rails (= 5.0.1)
   rails-jquery-autocomplete
   rails_12factor
   redis (~> 3.0)

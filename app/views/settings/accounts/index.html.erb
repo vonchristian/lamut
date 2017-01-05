@@ -31,9 +31,9 @@
             </div>
           </div>
           <div class="col-md-4 border-left col-md-offset-1">
-            <h4><span class="badge"><%=Barangay.count %></span> Barangays  </h4>
+            <h4><span class="badge"><%=Addresses::Barangay.count %></span> Barangays  </h4>
             <hr>
-            <% Barangay.all.each do |barangay| %>
+            <% Addresses::Barangay.all.each do |barangay| %>
               <p><%=barangay.name %></p>
             <% end %>
           </div>

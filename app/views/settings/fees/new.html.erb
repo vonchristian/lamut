@@ -1,0 +1,6 @@
+<%=simple_form_for @fee, url: :settings_fees do |f| %>
+  <%=f.input :name %>
+  <%=f.input :amount %>
+  <%=f.input :default %>
+  <%=f.submit "Create Fee", class: "btn btn-primary" %>
+<% end %>
