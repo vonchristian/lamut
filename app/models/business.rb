@@ -20,6 +20,7 @@ class Business < ApplicationRecord
   has_many :gross_sales, class_name: "Businesses::GrossSale"
   has_many :business_requirements, class_name: "Businesses::BusinessRequirement"
   has_many :required_documents, through: :business_requirements
+  has_many :fee_assessments, class_name: "Businesses::Assessments::FeeAssessment"
 
 
   accepts_nested_attributes_for :addresses, :business_activities

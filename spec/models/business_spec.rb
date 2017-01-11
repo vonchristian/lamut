@@ -12,7 +12,7 @@ RSpec.describe Business, type: :model do
     it { is_expected.to have_many :mayors_permit_fees }
     it { is_expected.to have_many :gross_sales }
     it { is_expected.to have_many :business_requirements }
-
+    it { is_expected.to have_many :fee_assessments }
   end
 
   describe "validations" do

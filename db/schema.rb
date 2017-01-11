@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161211111146) do
+ActiveRecord::Schema.define(version: 20170111070522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,15 @@ ActiveRecord::Schema.define(version: 20161211111146) do
     t.index ["entry_id", "account_id"], name: "index_amounts_on_entry_id_and_account_id", using: :btree
     t.index ["entry_id"], name: "index_amounts_on_entry_id", using: :btree
     t.index ["type"], name: "index_amounts_on_type", using: :btree
+  end
+
+  create_table "assessments", force: :cascade do |t|
+    t.integer  "business_id"
+    t.integer  "entry_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["business_id"], name: "index_assessments_on_business_id", using: :btree
+    t.index ["entry_id"], name: "index_assessments_on_entry_id", using: :btree
   end
 
   create_table "barangays", force: :cascade do |t|
@@ -157,6 +166,17 @@ ActiveRecord::Schema.define(version: 20161211111146) do
     t.index ["entriable_id"], name: "index_entries_on_entriable_id", using: :btree
     t.index ["entriable_type"], name: "index_entries_on_entriable_type", using: :btree
     t.index ["recorder_id"], name: "index_entries_on_recorder_id", using: :btree
+  end
+
+  create_table "fee_assessments", force: :cascade do |t|
+    t.integer  "business_id"
+    t.integer  "entry_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["business_id"], name: "index_fee_assessments_on_business_id", using: :btree
+    t.index ["entry_id"], name: "index_fee_assessments_on_entry_id", using: :btree
+    t.index ["user_id"], name: "index_fee_assessments_on_user_id", using: :btree
   end
 
   create_table "fees", force: :cascade do |t|
@@ -393,6 +413,8 @@ ActiveRecord::Schema.define(version: 20161211111146) do
 
   add_foreign_key "additional_requirements", "businesses"
   add_foreign_key "additional_requirements", "required_documents"
+  add_foreign_key "assessments", "businesses"
+  add_foreign_key "assessments", "entries"
   add_foreign_key "barangays", "municipalities"
   add_foreign_key "business_activities", "businesses"
   add_foreign_key "business_activities", "line_of_businesses"
@@ -400,6 +422,9 @@ ActiveRecord::Schema.define(version: 20161211111146) do
   add_foreign_key "business_requirements", "required_documents"
   add_foreign_key "businesses", "taxpayers"
   add_foreign_key "businesses_revocations", "businesses"
+  add_foreign_key "fee_assessments", "businesses"
+  add_foreign_key "fee_assessments", "entries"
+  add_foreign_key "fee_assessments", "users"
   add_foreign_key "gross_sales", "businesses"
   add_foreign_key "issuances", "required_documents"
   add_foreign_key "line_of_businesses", "line_of_business_classifications"
