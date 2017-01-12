@@ -1,0 +1,2 @@
+class HealthCertificate < RequiredDocument
+end
